@@ -1,10 +1,10 @@
 # Supple Crystal
 
-[![badge-lastcommit](https://img.shields.io/github/last-commit/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/commits/main)
-[![badge-openissues](https://img.shields.io/github/issues-raw/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/issues)
-[![badge-license](https://img.shields.io/github/license/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/blob/main/LICENSE)
-[![badge-contributors](https://img.shields.io/github/contributors/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/graphs/contributors)
-[![badge-codesize](https://img.shields.io/github/languages/code-size/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer)
+[![badge-lastcommit](https://img.shields.io/github/last-commit/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/commits/main)
+[![badge-openissues](https://img.shields.io/github/issues-raw/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/issues)
+[![badge-license](https://img.shields.io/github/license/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/blob/main/LICENSE)
+[![badge-contributors](https://img.shields.io/github/contributors/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/graphs/contributors)
+[![badge-codesize](https://img.shields.io/github/languages/code-size/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal)
 
 ## What is Supple Crystal?
 Supple Crystal is a transformable lightweight/advanced image viewer. 
