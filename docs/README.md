@@ -1,4 +1,4 @@
-# GViewer
+# Supple Crystal
 
 [![badge-lastcommit](https://img.shields.io/github/last-commit/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/commits/main)
 [![badge-openissues](https://img.shields.io/github/issues-raw/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/issues)
@@ -6,12 +6,12 @@
 [![badge-contributors](https://img.shields.io/github/contributors/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer/graphs/contributors)
 [![badge-codesize](https://img.shields.io/github/languages/code-size/GaryNLOL/GViewer?style=for-the-badge)](https://github.com/GaryNLOL/GViewer)
 
-## What is GViewer?
-GViewer is a transformable lightweight/advanced image viewer. 
+## What is Supple Crystal?
+Supple Crystal is a transformable lightweight/advanced image viewer. 
 
 It's transformable because it can change between 2 modes. Lightweight mode and advanced mode.
-- Lightweight mode: Default mode. The only menu is the context menu. It contains only very basic features like zoom, rotating and the option to change to advanced mode. The purpose of this mode is to open images as fast as possible.
-- Advanced mode: It contains zoom and rotating features, but also more advanced features for browsing images like a color picker, a cropping tool, a image filetype convertor.
+- Fast mode: Lightweight, default mode. The only menu is the context menu. It contains only very basic features like zoom, rotating and the option to change to advanced mode. The purpose of this mode is to open images as fast as possible.
+- Polished mode: Advanced mode. It contains zoom and rotating features, but also more advanced features for browsing images like a color picker, a cropping tool, a image filetype convertor.
 
 ### Features
 - Efficient.
