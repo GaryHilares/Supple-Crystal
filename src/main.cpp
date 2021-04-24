@@ -8,6 +8,6 @@ int main(int argc, char* argv[])
         std::cerr << "Invalid number of arguments!" << std::endl;
         return 1;
     }
-    App::GViewer app;
+    App::SuppleCrystal app;
     return app.run(argc,argv);
 }

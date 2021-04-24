@@ -5,7 +5,7 @@
 #include "../include/App.hpp"
 #include <iostream>
 
-int App::GViewer::run(int argc, char* argv[])
+int App::SuppleCrystal::run(int argc, char* argv[])
 {
     sf::Clock timer;
     sf::Font arialbd;
@@ -17,9 +17,15 @@ int App::GViewer::run(int argc, char* argv[])
     std::string filename = argv[1];
     ImageDisplay imageDisplay(filename);
     sf::RenderWindow window(sf::VideoMode(imageDisplay.getGlobalBounds().width,imageDisplay.getGlobalBounds().height),"GViewer");
-    PopupMenu context_menu({PopupMenuButton("Full Mode",arialbd,[](){std::cout<<"Full mode!";}),
-                            PopupMenuButton("Rotate left",arialbd,[](){std::cout<<"Rotate left";}),
-                            PopupMenuButton("Rotate right",arialbd,[](){std::cout<<"Rotate right";})
+    PopupMenu context_menu({PopupMenuButton("Full Mode",arialbd,[&](){std::cout<<"Full mode!";}),
+                            PopupMenuButton("Rotate left",arialbd,
+                                            [&](){
+                                                imageDisplay.rotateLeft();
+                                            }),
+                            PopupMenuButton("Rotate right",arialbd,
+                                            [&](){
+                                                imageDisplay.rotateRight();
+                                            })
                            });
     while(window.isOpen())
     {

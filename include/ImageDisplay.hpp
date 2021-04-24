@@ -11,4 +11,6 @@ public:
     ImageDisplay(const std::string& filename);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     sf::FloatRect getGlobalBounds() const;
+    void rotateLeft();
+    void rotateRight();
 };

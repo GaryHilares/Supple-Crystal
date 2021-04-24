@@ -18,3 +18,13 @@ sf::FloatRect ImageDisplay::getGlobalBounds() const
 {
     return this->sprite.getGlobalBounds();
 }
+
+void ImageDisplay::rotateRight()
+{
+    this->sprite.rotate(-90);
+}
+
+void ImageDisplay::rotateLeft()
+{
+    this->sprite.rotate(90);
+}
