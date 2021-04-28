@@ -1,4 +1,4 @@
-# Supple Crystal
+<h1 align="center">Supple Crystal</h1>
 
 [![badge-lastcommit](https://img.shields.io/github/last-commit/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/commits/main)
 [![badge-openissues](https://img.shields.io/github/issues-raw/GaryNLOL/Supple-Crystal?style=for-the-badge)](https://github.com/GaryNLOL/Supple-Crystal/issues)
