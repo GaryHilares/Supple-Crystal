@@ -1,4 +1,5 @@
 <h1 align="center">Contributing Guidelines</h1>
+
 ## Generalities
 <p align="justify">
 As part of the open source community, we strongly think that contributing makes us to grow as a project, but also makes us more humans and makes each of us grow as a developer. 
