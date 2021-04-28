@@ -22,7 +22,8 @@ Contributions in Supple Crystal should relate to:
 - Image Display.
 <!-- /ProjectDependant -->
 
-Any contribution out of the scope should be strongly discussed and approved in the Discord server.
+<br>
+Any contribution out of this scope should be strongly discussed and approved in the Discord server.
 
 ## Ways to contribute
 ### Pull requests
