@@ -21,10 +21,20 @@ int App::SuppleCrystal::run(int argc, char* argv[])
                             PopupMenuButton("Rotate left",arialbd,
                                             [&](){
                                                 imageDisplay.rotateLeft();
+                                                sf::Vector2f new_window_size = imageDisplay.getRotatedDimensions();
+                                                std::cout << new_window_size.x << " " << new_window_size.y << std::endl;
+                                                sf::View view(sf::FloatRect(0, 0, new_window_size.x, new_window_size.y));
+                                                window.setSize({static_cast<unsigned int>(new_window_size.x), static_cast<unsigned int>(new_window_size.y)});
+                                                window.setView(view);
                                             }),
                             PopupMenuButton("Rotate right",arialbd,
                                             [&](){
                                                 imageDisplay.rotateRight();
+                                                sf::Vector2f new_window_size = imageDisplay.getRotatedDimensions();
+                                                std::cout << new_window_size.x << " " << new_window_size.y << std::endl;
+                                                sf::View view(sf::FloatRect(0, 0, new_window_size.x, new_window_size.y));
+                                                window.setSize({static_cast<unsigned int>(new_window_size.x), static_cast<unsigned int>(new_window_size.y)});
+                                                window.setView(view);
                                             })
                            });
     while(window.isOpen())
