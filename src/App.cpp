@@ -4,6 +4,8 @@
 #include "../include/Menus/PopupMenuButton.hpp"
 #include "../include/App.hpp"
 #include <iostream>
+#include <windows.h>
+#include <optional>
 
 int App::SuppleCrystal::run(int argc, char* argv[])
 {
@@ -15,28 +17,30 @@ int App::SuppleCrystal::run(int argc, char* argv[])
         return 1;
     }
     std::string filename = argv[1];
+    sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),"Supple Crystal");
+    ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
     ImageDisplay imageDisplay(filename);
-    sf::RenderWindow window(sf::VideoMode(imageDisplay.getGlobalBounds().width,imageDisplay.getGlobalBounds().height),"GViewer");
-    PopupMenu context_menu({PopupMenuButton("Full Mode",arialbd,[&](){std::cout<<"Full mode!";}),
+    imageDisplay.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
+    imageDisplay.setOrigin(imageDisplay.getDimensions().x/2,imageDisplay.getDimensions().y/2);
+    PopupMenu context_menu({/*PopupMenuButton("Full Mode",arialbd,[&](){std::cout<<"Full mode!";}),*/
                             PopupMenuButton("Rotate left",arialbd,
                                             [&](){
-                                                imageDisplay.rotateLeft();
-                                                sf::Vector2f new_window_size = imageDisplay.getRotatedDimensions();
-                                                std::cout << new_window_size.x << " " << new_window_size.y << std::endl;
-                                                sf::View view(sf::FloatRect(0, 0, new_window_size.x, new_window_size.y));
-                                                window.setSize({static_cast<unsigned int>(new_window_size.x), static_cast<unsigned int>(new_window_size.y)});
-                                                window.setView(view);
+                                                imageDisplay.rotate(-90);
                                             }),
                             PopupMenuButton("Rotate right",arialbd,
                                             [&](){
-                                                imageDisplay.rotateRight();
-                                                sf::Vector2f new_window_size = imageDisplay.getRotatedDimensions();
-                                                std::cout << new_window_size.x << " " << new_window_size.y << std::endl;
-                                                sf::View view(sf::FloatRect(0, 0, new_window_size.x, new_window_size.y));
-                                                window.setSize({static_cast<unsigned int>(new_window_size.x), static_cast<unsigned int>(new_window_size.y)});
-                                                window.setView(view);
+                                                imageDisplay.rotate(90);
+                                            }),
+                            PopupMenuButton("Increase zoom",arialbd,
+                                            [&](){
+                                                imageDisplay.scale({2,2});
+                                            }),
+                            PopupMenuButton("Decrease zoom",arialbd,
+                                            [&](){
+                                                imageDisplay.scale({0.5,0.5});
                                             })
                            });
+    std::optional<sf::Vector2i> last_clicked_mouse_position;
     while(window.isOpen())
     {
         sf::Event event;
@@ -67,8 +71,20 @@ int App::SuppleCrystal::run(int argc, char* argv[])
             sf::Vector2f coords = window.mapPixelToCoords(mouse_pos);
             context_menu.setPosition(coords);
             context_menu.display();
+
         }
-        window.clear();
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            if(last_clicked_mouse_position.has_value())
+            {
+                const sf::Vector2i current_mouse_position = sf::Mouse::getPosition(window);
+                imageDisplay.move(-(last_clicked_mouse_position.value().x-current_mouse_position.x),-(last_clicked_mouse_position.value().y-current_mouse_position.y));
+            }
+            last_clicked_mouse_position = sf::Mouse::getPosition(window);
+        }
+        else
+            last_clicked_mouse_position.reset();
+        window.clear(sf::Color::White);
         window.draw(imageDisplay);
         window.draw(context_menu);
         window.display();

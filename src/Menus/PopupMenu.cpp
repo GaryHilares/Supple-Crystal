@@ -3,7 +3,7 @@
 PopupMenu::PopupMenu(const std::vector<PopupMenuButton>& new_buttons): buttons(new_buttons), do_display(false)
 {
     for(std::vector<PopupMenuButton>::size_type i = 0; i < this->buttons.size(); i++)
-        this->buttons[i].setPosition(0,i*10);
+        this->buttons[i].setPosition(0,i*20);
 }
 
 void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -25,10 +25,10 @@ MenuInterface* PopupMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
     return (position.y < pointCoords.y
-        && position.y + this->buttons.size() * 10 > pointCoords.y
+        && position.y + this->buttons.size() * 20 > pointCoords.y
         && position.x < pointCoords.x
-        && position.x + 100 > pointCoords.x)
-        ? &this->buttons[(pointCoords.y - this->getPosition().y)/10] : nullptr;
+        && position.x + 150 > pointCoords.x)
+        ? &this->buttons[(pointCoords.y - this->getPosition().y)/20] : nullptr;
 }
 
 void PopupMenu::processEvent(sf::Event event)
