@@ -11,7 +11,7 @@ int App::SuppleCrystal::run(int argc, char* argv[])
 {
     sf::Clock timer;
     sf::Font arialbd;
-    if(!arialbd.loadFromFile("arialbd.ttf"))
+    if(!arialbd.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1-alfa/arialbd.ttf"))
     {
         std::cerr << "Couldn't open arialbd.ttf!";
         return 1;
