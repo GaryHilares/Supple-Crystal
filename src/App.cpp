@@ -9,11 +9,10 @@
 
 int App::SuppleCrystal::run(int argc, char* argv[])
 {
-    sf::Clock timer;
     sf::Font arialbd;
-    if(!arialbd.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1-alfa/arialbd.ttf"))
+    if(!arialbd.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1-alfa/calibri.ttf"))
     {
-        std::cerr << "Couldn't open arialbd.ttf!";
+        std::cerr << "Couldn't open calibri.ttf!";
         return 1;
     }
     std::string filename = argv[1];
@@ -33,14 +32,15 @@ int App::SuppleCrystal::run(int argc, char* argv[])
                                             }),
                             PopupMenuButton("Increase zoom",arialbd,
                                             [&](){
-                                                imageDisplay.scale({2,2});
+                                                imageDisplay.scale({1.15,1.15});
                                             }),
                             PopupMenuButton("Decrease zoom",arialbd,
                                             [&](){
-                                                imageDisplay.scale({0.5,0.5});
+                                                imageDisplay.scale({0.85,0.85});
                                             })
                            });
     std::optional<sf::Vector2i> last_clicked_mouse_position;
+    bool focused = true;
     while(window.isOpen())
     {
         /* Event handling: Closing window and context menu */
@@ -49,6 +49,12 @@ int App::SuppleCrystal::run(int argc, char* argv[])
         {
             switch(event.type)
             {
+            case sf::Event::LostFocus:
+                focused = false;
+                break;
+            case sf::Event::GainedFocus:
+                focused = true;
+                break;
             case sf::Event::Closed:
                 window.close();
                 break;
@@ -76,22 +82,35 @@ int App::SuppleCrystal::run(int argc, char* argv[])
                     }
                 }
                 break;
+            case sf::Event::KeyReleased:
+                /* Hotkeys */
+                if(event.key.code == sf::Keyboard::Add)
+                    imageDisplay.scale(1.15,1.15);
+                else if(event.key.code == sf::Keyboard::Subtract)
+                    imageDisplay.scale(0.85,0.85);
+                else if(event.key.code == sf::Keyboard::Left)
+                    imageDisplay.rotate(90);
+                else if(event.key.code == sf::Keyboard::Right)
+                    imageDisplay.rotate(-90);
             default:
                 break;
             }
         }
         /* Slide */
-        if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        if(focused)
         {
-            if(last_clicked_mouse_position.has_value())
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
             {
-                const sf::Vector2i current_mouse_position = sf::Mouse::getPosition(window);
-                imageDisplay.move(-(last_clicked_mouse_position.value().x-current_mouse_position.x),-(last_clicked_mouse_position.value().y-current_mouse_position.y));
+                if(last_clicked_mouse_position.has_value())
+                {
+                    const sf::Vector2i current_mouse_position = sf::Mouse::getPosition(window);
+                    imageDisplay.move(-(last_clicked_mouse_position.value().x-current_mouse_position.x),-(last_clicked_mouse_position.value().y-current_mouse_position.y));
+                }
+                last_clicked_mouse_position = sf::Mouse::getPosition(window);
             }
-            last_clicked_mouse_position = sf::Mouse::getPosition(window);
+            else
+                last_clicked_mouse_position.reset();
         }
-        else
-            last_clicked_mouse_position.reset();
         /* Display */
         window.clear(sf::Color::White);
         window.draw(imageDisplay);
