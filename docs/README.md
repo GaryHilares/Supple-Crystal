@@ -22,7 +22,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 
 ### Features
 - **Efficient:** Supple Crystal lightweight mode is made to open as fast as possible. You won't have to wait to see your images!
-- **Scalable:** Supple Crystal can open your images regardless of their size. 5000px * 5000px image? No problem! Supple Crystal opens it.
+- **Scalable:** Supple Crystal can open your images regardless of their size. 5000px * 5000px image? No problem! Supple Crystal can open it.
 - **Free:** There aren't any pro modes nor ads. All Supple Crystal features are free for everyone.
 - **Open-source:** The code of Supple Crystal is openly available on GitHub. You can download it and edit it to make it personal!
 - **Versatile:** With its modes feature, Supple Crystal is a very versatile image viewer that will be able to adapt itself to your needs for sure.
