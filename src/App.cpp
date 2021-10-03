@@ -79,7 +79,7 @@ int App::SuppleCrystal::run(const int argc, char* argv[])
 {
     //Load fonts.
     sf::Font calibri;
-    assert(calibri.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.1-alfa/calibri.ttf"));
+    assert(calibri.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/PublicSans-Regular.ttf"));
     //Gets the filename.
     const std::string filename = argv[1];
     //Opens and sets the window.
