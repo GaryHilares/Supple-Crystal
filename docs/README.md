@@ -47,3 +47,10 @@ To build and install Supple Crystal from source you must follow the next steps:
 3. Set up the file structure.
 
 You can also install a precompiled version of Supple Crystal that comes ready to use. 
+
+Once you have it, you can start using it.
+
+For activating it from the command line you can use this comand:
+```cmd
+(executable name) (filename) 
+```
