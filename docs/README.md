@@ -63,6 +63,7 @@ Once you have it, you can start using it:
 
 ## Contributors
 Thanks to these wonderful people for making Supple Crystal possible!
+
 <a href="https://github.com/GaryNLOL/Supple-Crystal/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=GaryNLOL/Supple-Crystal" />
 </a>
