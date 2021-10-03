@@ -42,7 +42,6 @@ Third party code and resources is under their own licenses:
 ## Installation and usage
 To install Supple Crystal you must follow the next steps:
 1. Get SFML libraries and DLLs.
-   1.1?. Build it from source.
-   1.2?. Download a precompiled build. 
+   - You can look at how to get SFML [here](https://www.sfml-dev.org/tutorials/2.5/). 
 2. Get Supple Crystal executables.
 3. Set up the file structure. 
