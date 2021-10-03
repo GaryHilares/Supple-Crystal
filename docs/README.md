@@ -8,6 +8,8 @@
   <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryNLOL/Supple-Crystal?style=for-the-badge">
 </p>
 
+[![Video-Preview](https://user-images.githubusercontent.com/46727048/135763774-dc4a6f1b-9808-4e8f-9033-b4ab64f4e274.png)](https://youtu.be/cIb2BJPi414)
+
 ## Useful links
 - [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
 - [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
