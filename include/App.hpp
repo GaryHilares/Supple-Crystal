@@ -5,6 +5,6 @@ namespace App
     class SuppleCrystal
     {
     public:
-        int run(int argc, char* argv[]);
+        int run(const int argc, char* argv[]);
     };
 }

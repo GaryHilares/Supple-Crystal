@@ -2,6 +2,7 @@
 #include "../include/Menus/PopupMenu.hpp"
 #include "../include/Menus/PopupMenuButton.hpp"
 #include "../include/Menus/PopupMenuButton.hpp"
+#include "../include/Menus/style-constants.hpp"
 #include "../include/App.hpp"
 #include <iostream>
 #include <windows.h>
@@ -71,44 +72,32 @@ void processContextMenu(const sf::RenderWindow& reference_window, PopupMenu& con
     }
 }
 
-int App::SuppleCrystal::run(int argc, char* argv[])
+int App::SuppleCrystal::run(const int argc, char* argv[])
 {
     //Load fonts.
-    sf::Font arialbd;
-    assert(arialbd.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.1-alfa/calibri.ttf"));
+    sf::Font calibri;
+    assert(calibri.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.1-alfa/calibri.ttf"));
     //Gets the filename.
-    std::string filename = argv[1];
+    const std::string filename = argv[1];
     //Opens and sets the window.
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),"Supple Crystal");
     ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
     //Loads and sets the image.
-    ImageDisplay imageDisplay(filename);
-    imageDisplay.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
-    imageDisplay.setOrigin(imageDisplay.getDimensions().x/2,imageDisplay.getDimensions().y/2);
+    ImageDisplay image_display(filename);
+    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
+    image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
     //Creates the context_menu.
     PopupMenu context_menu({/*PopupMenuButton("Full Mode",arialbd,[&](){std::cout<<"Full mode!";}),*/
-                            PopupMenuButton("Rotate left",arialbd,
-                                            [&](){
-                                                imageDisplay.rotate(-90);
-                                            }),
-                            PopupMenuButton("Rotate right",arialbd,
-                                            [&](){
-                                                imageDisplay.rotate(90);
-                                            }),
-                            PopupMenuButton("Increase zoom",arialbd,
-                                            [&](){
-                                                imageDisplay.scale({1.15,1.15});
-                                            }),
-                            PopupMenuButton("Decrease zoom",arialbd,
-                                            [&](){
-                                                imageDisplay.scale({0.85,0.85});
-                                            })
+                            PopupMenuButton("Rotate left",calibri,[&](){image_display.rotate(-90);}),
+                            PopupMenuButton("Rotate right",calibri,[&](){image_display.rotate(90);}),
+                            PopupMenuButton("Increase zoom",calibri,[&](){image_display.scale({1.15,1.15});}),
+                            PopupMenuButton("Decrease zoom",calibri,[&](){image_display.scale({0.85,0.85});})
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,[&](){imageDisplay.scale(1.15,1.15);}},
-                                            {sf::Keyboard::Subtract,[&](){imageDisplay.scale(0.85,0.85);}},
-                                            {sf::Keyboard::Left,[&](){imageDisplay.rotate(90);}},
-                                            {sf::Keyboard::Right,[&](){imageDisplay.rotate(-90);}}
+                                            {sf::Keyboard::Add,[&](){image_display.scale(1.15,1.15);}},
+                                            {sf::Keyboard::Subtract,[&](){image_display.scale(0.85,0.85);}},
+                                            {sf::Keyboard::Left,[&](){image_display.rotate(90);}},
+                                            {sf::Keyboard::Right,[&](){image_display.rotate(-90);}}
                                          });
     SlideController slide_controller;
     while(window.isOpen())
@@ -145,10 +134,10 @@ int App::SuppleCrystal::run(int argc, char* argv[])
                 break;
             }
         }
-        slide_controller.updateIfEnabled(window,imageDisplay);
+        slide_controller.updateIfEnabled(window,image_display);
         /* Display */
-        window.clear(sf::Color::White);
-        window.draw(imageDisplay);
+        window.clear(sf::Color(Constants::background_color));
+        window.draw(image_display);
         window.draw(context_menu);
         window.display();
     }

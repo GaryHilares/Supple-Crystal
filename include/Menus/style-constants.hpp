@@ -1,5 +1,6 @@
 namespace Constants
 {
+    constexpr sf::Uint32 background_color = 0xeeeeeeff;
     namespace PopupMenu
     {
         namespace Button
