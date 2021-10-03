@@ -40,8 +40,10 @@ Third party code and resources is under their own licenses:
 - [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
 
 ## Installation and usage
-To install Supple Crystal you must follow the next steps:
+To build Supple Crystal you must follow the next steps:
 1. Get SFML libraries and DLLs.
    - You can look at how to get SFML [here](https://www.sfml-dev.org/tutorials/2.5/). 
 2. Get Supple Crystal executables.
-3. Set up the file structure. 
+3. Set up the file structure.
+
+You can also install a precompiled version of Supple Crystal that comes ready to use. 
