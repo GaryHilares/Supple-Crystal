@@ -51,7 +51,7 @@ You can also install a precompiled version of Supple Crystal that comes ready to
 Once you have it, you can start using it:
 - For activating it from the command line you can use this comand:
 ```cmd
-(executable name) (filename) 
+(executable path) (filename) 
 ```
 - You can grab an application and bring it towards the item in the file explorer to open it:
 ![grab](https://user-images.githubusercontent.com/46727048/135758516-775036cf-de4f-4584-9734-1139ed00a5ce.gif)
