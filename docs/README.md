@@ -10,6 +10,10 @@
 
 [![Video-Preview](https://user-images.githubusercontent.com/46727048/135763774-dc4a6f1b-9808-4e8f-9033-b4ab64f4e274.png)](https://youtu.be/cIb2BJPi414)
 
+## Hacktoberfest 2021 Announcement
+We're celebrating Hacktoberfest 2021 by providing mentorship to beginners who want to start making their Pull Requests! Just comment on the issue you're trying to solve (or create a new one if your problem isn't related to any issue) and we will attempt to you as soon as possible!
+![Hacktoberfest-Banner](https://camo.githubusercontent.com/5a8d352f17e028b08d7afe24eeb3293740bf399826ee1e3726dbae93d685c2b7/68747470733a2f2f6861636b746f626572666573742e6469676974616c6f6365616e2e636f6d2f5f6e7578742f696d672f6c6f676f2d6861636b746f626572666573742d66756c6c2e663432653362312e737667)
+
 ## Useful links
 - [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
 - [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
