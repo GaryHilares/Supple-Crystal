@@ -34,7 +34,7 @@ Supple Crystal is a transformable lightweight<!--/advanced--> image viewer.
 - SFML.
 
 ## License
-All the code owned in this repository is under the MIT license.
+All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/LICENSE).
 
 Third party code and resources in this repository are under their own licenses:
 - [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
