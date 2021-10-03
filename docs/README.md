@@ -37,7 +37,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/LICENSE).
 
 Third party code and resources in this repository are under their own licenses:
-- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
+- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under the [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
 
 ## Installation and usage
 To build and install Supple Crystal from source you must follow the next steps:
