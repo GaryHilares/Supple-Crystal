@@ -8,6 +8,11 @@
   <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryNLOL/Supple-Crystal?style=for-the-badge">
 </p>
 
+## Useful links
+- [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
+- [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
+- [Discord Server.](https://discord.gg/RQN6gcDQwX)
+
 ## What is Supple Crystal?
 Supple Crystal is a transformable lightweight<!--/advanced--> image viewer. 
 
@@ -28,7 +33,8 @@ Supple Crystal is a transformable lightweight<!--/advanced--> image viewer.
 ### Dependencies
 - SFML.
 
-## Useful links
-- [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
-- [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
-- [Discord Server.](https://discord.gg/RQN6gcDQwX)
+## License
+All the code owned is under the MIT license.
+
+Third party code and resources is under their own licenses:
+- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
