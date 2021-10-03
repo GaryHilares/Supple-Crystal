@@ -14,9 +14,9 @@
 - [Discord Server.](https://discord.gg/RQN6gcDQwX)
 
 ## What is Supple Crystal?
-Supple Crystal is a transformable lightweight<!--/advanced--> image viewer. 
+Supple Crystal is a **transformable lightweight/advanced image viewer**.
 
-It's transformable because it can change between 2 modes. Lightweight mode and advanced mode.
+It's transformable because it can change between 2 modes: Fast mode and polished mode.
 - **Fast mode:** Lightweight, default mode. The only menu is the context menu. It contains only very basic features like zoom, rotating and the option to change to advanced mode. The purpose of this mode is to open images as fast as possible.
 - **Polished mode (Soon available):** Advanced mode. It contains zoom and rotating features, but also more advanced features for browsing images like a color picker, a cropping tool and an image filetype convertor.
 
