@@ -43,7 +43,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 ## Motivation
 Too often, I have trouble opening images. When I'm in a hurry, I want to open an image as fast as possible to check. Nonetheless, when I'm not in a hurry but inspecting an image, I would prefer having many features that helps me viewing the details. As a consequence, I have 2 image viewers. However, this is also a problem, because it's hard managing both - sometimes I open the advanced one when I'm in a hurry and my computer lags - and it causes a lot of desorganization.
 
-Then I had the idea of creating Supple Crystal. Supple Crystal solves this problem by giving the user both the fast mode and the polished mode. The fast mode is the default mode which opens as fast as possible so you won't have problem if you're in a hurry. The polished mode can be accessed from fast mode and has more advanced features. With those two modes, there is no need of having two image viewers nor causing yourself a lot of trouble.
+Then, I got the idea of creating Supple Crystal. Supple Crystal solves this problem by giving the user both the fast mode and the polished mode. The fast mode is the default mode which opens as fast as possible so you won't have problem if you're in a hurry. The polished mode can be accessed from fast mode and has more advanced features. With those two modes, there is no need of having two image viewers nor causing yourself a lot of trouble.
 
 ## Installation and usage
 To build and install Supple Crystal from source you must follow the next steps:
