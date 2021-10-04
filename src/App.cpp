@@ -75,11 +75,27 @@ void processContextMenu(const sf::RenderWindow& reference_window, PopupMenu& con
     }
 }
 
+std::string replaceAllOcurrencesOfCharacter(std::string str, char to_replace, char replacement)
+{
+    std::replace(str.begin(),str.end(),to_replace,replacement);
+    return str;
+}
+
+sf::Font loadFont(const std::string& filename, const std::vector<std::string>& fallbackDirectories)
+{
+    sf::Font font;
+    for(const std::string& directory: fallbackDirectories)
+        if(font.loadFromFile(directory + filename))
+            return font;
+    throw;
+}
+
 int App::SuppleCrystal::run(const int argc, char* argv[])
 {
     //Load fonts.
-    sf::Font calibri;
-    assert(calibri.loadFromFile("C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/PublicSans-Regular.ttf"));
+    const std::string file_path = replaceAllOcurrencesOfCharacter(std::string(argv[0]),'\\','/');
+    const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
+    sf::Font calibri = loadFont("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     //Gets the filename.
     const std::string filename = argv[1];
     //Opens and sets the window.
