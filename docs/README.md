@@ -60,8 +60,8 @@ To build and install Supple Crystal from source you must follow the next steps:
         |--- sfml-window-2.dll
         |--- ${Supple Crystal Executable}
 ```
+Notice that you may not change the names of the TTFs nor the DLLs.
 
-- - - Notice that you may not change the names of the TTFs nor the DLLs.
 You can also install a precompiled version of Supple Crystal that comes ready to use. 
 
 Once you have it, you can start using it:
