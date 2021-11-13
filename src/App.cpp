@@ -167,9 +167,6 @@ void App::SuppleCrystal::runPolishedMode(const int argc, char* argv[])
 
 int App::SuppleCrystal::run(const int argc, char* argv[])
 {
-    this->do_exit = false;
-    this->exit_code = 0;
-    this->current_activity = Activity::FastMode;
     while(!do_exit)
     {
         switch(current_activity)
@@ -184,3 +181,5 @@ int App::SuppleCrystal::run(const int argc, char* argv[])
     }
     return this->exit_code;
 }
+
+App::SuppleCrystal::SuppleCrystal(): do_exit(false), exit_code(0), current_activity(Activity::FastMode) {}
