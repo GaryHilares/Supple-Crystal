@@ -1,5 +1,5 @@
-#include "../../include/Menus/PopupMenu.hpp"
-#include "../../include/Menus/style-constants.hpp"
+#include "../../../../include/UI/Elements/Menus/PopupMenu.hpp"
+#include "../../../../include/UI/Settings/style-constants.hpp"
 
 PopupMenu::PopupMenu(const std::vector<PopupMenuButton>& new_buttons): buttons(new_buttons), do_display(false)
 {

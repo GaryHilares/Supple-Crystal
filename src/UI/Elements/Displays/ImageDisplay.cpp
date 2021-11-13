@@ -1,4 +1,4 @@
-#include "../include/ImageDisplay.hpp"
+#include "../../../../include/UI/Elements/Displays/ImageDisplay.hpp"
 #include <iostream>
 
 ImageDisplay::ImageDisplay(const std::string& filename)

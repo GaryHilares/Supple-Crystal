@@ -1,4 +1,4 @@
-#include "../include/HotkeyController.hpp"
+#include "../../../include/UI/Controllers/HotkeyController.hpp"
 
 HotkeysController::HotkeysController(std::unordered_map<sf::Keyboard::Key,std::function<void()>> new_hotkey_bindings): hotkey_bindings(new_hotkey_bindings){}
 

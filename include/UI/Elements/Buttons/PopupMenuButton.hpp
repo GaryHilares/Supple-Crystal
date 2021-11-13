@@ -1,5 +1,5 @@
 #pragma once
-#include "MenuInterface.hpp"
+#include "../Menus/MenuInterface.hpp"
 #include <string>
 #include <functional>
 
