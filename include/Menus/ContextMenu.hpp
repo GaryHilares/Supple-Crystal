@@ -1,6 +1,9 @@
 #include "PopupMenu.hpp"
-#include <functional>
-#include <SFML/Window/Keyboard.hpp>
-#include <unordered_map>
 
+class ContextMenu: public PopupMenu
+{
+public:
+    using PopupMenu::PopupMenu;
+    void processEvent(const sf::RenderWindow& reference_window, sf::Event mouse_event);
+};
 
