@@ -17,7 +17,7 @@ int App::SuppleCrystal::run(const int argc, char* argv[])
     const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
     sf::Font calibri = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     //Gets the filename.
-    const std::string filename = argv[1];
+    const std::string filename = replaceAllOcurrencesOfCharacter(std::string(argv[1]),'\\','/');
     //Opens and sets the window.
     sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), filename.substr(filename.rfind("/")+1,filename.size()) + " - Supple Crystal");
