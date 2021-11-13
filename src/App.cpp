@@ -17,7 +17,7 @@ void App::SuppleCrystal::runFastMode(const int argc, char* argv[])
     //Load fonts.
     const std::string file_path = replaceAllOcurrencesOfCharacter(std::string(argv[0]),'\\','/');
     const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
-    sf::Font calibri = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
+    sf::Font font = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     //Gets the filename.
     const std::string filename = replaceAllOcurrencesOfCharacter(std::string(argv[1]),'\\','/');
     //Opens and sets the window.
@@ -31,11 +31,11 @@ void App::SuppleCrystal::runFastMode(const int argc, char* argv[])
     image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
     //Creates the context_menu.
     ContextMenu context_menu({
-                            PopupMenuButton("Polished Mode",calibri,[&](){this->current_activity = Activity::PolishedMode; window.close();}),
-                            PopupMenuButton("Rotate left",calibri,[&](){image_display.rotate(-90);}),
-                            PopupMenuButton("Rotate right",calibri,[&](){image_display.rotate(90);}),
-                            PopupMenuButton("Increase zoom",calibri,[&](){image_display.scale({1.15,1.15});}),
-                            PopupMenuButton("Decrease zoom",calibri,[&](){image_display.scale({0.85,0.85});})
+                            PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();}),
+                            PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);}),
+                            PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);}),
+                            PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});}),
+                            PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});})
                            });
     HotkeysController hotkeys_controller({
                                             {sf::Keyboard::Add,[&](){image_display.scale(1.1,1.1);}},
