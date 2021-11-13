@@ -1,7 +1,7 @@
 #pragma once
 #include "../Menus/MenuInterface.hpp"
-#include <string>
 #include <functional>
+#include <string>
 
 class PopupMenuButton : public MenuInterface
 {

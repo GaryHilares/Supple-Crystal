@@ -1,6 +1,5 @@
 #include "../../../include/UI/Controllers/SlideController.hpp"
 
-
 // std::make_optional may see pretty redundant, but is to avoid bugs in GCC.
 // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=80635
 SlideController::SlideController(): enabled(true), last_clicked_mouse_position(std::make_optional<sf::Vector2i>()) {}

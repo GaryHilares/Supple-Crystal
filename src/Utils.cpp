@@ -1,4 +1,4 @@
-#include "../include/Utils.hpp"
+#include "../include/utils.hpp"
 #include <cassert>
 
 std::string replaceAllOcurrencesOfCharacter(std::string str, char to_replace, char replacement)

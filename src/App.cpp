@@ -1,15 +1,15 @@
-#include "../include/UI/Controllers/SlideController.hpp"
-#include "../include/UI/Controllers/HotkeyController.hpp"
-#include "../include/Utils.hpp"
-#include "../include/UI/Elements/Displays/ImageDisplay.hpp"
-#include "../include/UI/Elements/Menus/PopupMenu.hpp"
-#include "../include/UI/Elements/Buttons/PopupMenuButton.hpp"
-#include "../include/UI/Elements/Menus/ContextMenu.hpp"
-#include "../include/UI/Settings/style-constants.hpp"
 #include "../include/App.hpp"
+#include "../include/UI/Controllers/HotkeyController.hpp"
+#include "../include/UI/Controllers/SlideController.hpp"
+#include "../include/UI/Elements/Buttons/PopupMenuButton.hpp"
+#include "../include/UI/Elements/Displays/ImageDisplay.hpp"
+#include "../include/UI/Elements/Menus/ContextMenu.hpp"
+#include "../include/UI/Elements/Menus/PopupMenu.hpp"
+#include "../include/UI/Settings/style-constants.hpp"
+#include "../include/utils.hpp"
+#include <iostream>
 #include <string>
 #include <windows.h>
-#include <iostream>
 
 void App::SuppleCrystal::runFastMode(const int argc, char* argv[])
 {

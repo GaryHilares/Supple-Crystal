@@ -1,7 +1,7 @@
 #pragma once
 #include <optional>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include "../Elements/Displays/ImageDisplay.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class SlideController
 {

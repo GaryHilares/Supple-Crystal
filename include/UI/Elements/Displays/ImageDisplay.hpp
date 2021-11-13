@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class ImageDisplay : public sf::Drawable, public sf::Transformable
 {

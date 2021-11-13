@@ -1,9 +1,9 @@
 #pragma once
-#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <cassert>
 #include <functional>
 #include <unordered_map>
-#include <cassert>
 
 class HotkeysController
 {
