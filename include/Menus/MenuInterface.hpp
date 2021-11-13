@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class MenuInterface: public sf::Drawable, public sf::Transformable
