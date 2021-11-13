@@ -30,6 +30,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 - **Free:** There aren't any pro modes nor ads. All Supple Crystal features are free for everyone.
 - **Open-source:** The code of Supple Crystal is openly available on GitHub. You can download it and edit it to make it personal!
 - **Versatile:** With its modes feature, Supple Crystal is a very versatile image viewer that will be able to adapt itself to your needs for sure.
+- **Multiple formats:** Because it is built with SFML, Supple Crystal supports the same image formats that the library supports: `bmp`, `png`, `tga`, `jpg` (non-progressive), `gif` (unanimated), `psd`, `hdr` and `pic`.
 
 ### Platforms
 - Cross-platform.
