@@ -7,15 +7,6 @@ std::string replaceAllOcurrencesOfCharacter(std::string str, char to_replace, ch
     return str;
 }
 
-sf::Font loadFontWithFallbacks(const std::string& filename, const std::vector<std::string>& fallbackDirectories)
-{
-    sf::Font font;
-    for(const std::string& directory: fallbackDirectories)
-        if(font.loadFromFile(directory + filename))
-            return font;
-    throw;
-}
-
 void preventWindowContentResize(sf::RenderWindow& window, sf::Event resize_event)
 {
     assert(resize_event.type == sf::Event::Resized);
