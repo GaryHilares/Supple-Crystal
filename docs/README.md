@@ -10,11 +10,6 @@
 
 [![Video-Preview](https://user-images.githubusercontent.com/46727048/135763774-dc4a6f1b-9808-4e8f-9033-b4ab64f4e274.png)](https://youtu.be/cIb2BJPi414)
 
-## Hacktoberfest 2021 Announcement
-We're celebrating Hacktoberfest 2021 by providing mentorship to beginners who want to start making their Pull Requests! Just comment on the issue you're trying to solve (or create a new one if your problem isn't related to any issue) and we will attempt to you as soon as possible!
-
-![Hacktoberfest-Banner](https://camo.githubusercontent.com/5a8d352f17e028b08d7afe24eeb3293740bf399826ee1e3726dbae93d685c2b7/68747470733a2f2f6861636b746f626572666573742e6469676974616c6f6365616e2e636f6d2f5f6e7578742f696d672f6c6f676f2d6861636b746f626572666573742d66756c6c2e663432653362312e737667)
-
 ## Useful links
 - [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
 - [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
@@ -40,6 +35,11 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 ### Dependencies
 - SFML.
 
+## Motivation
+Too often, I have trouble opening images. When I'm in a hurry, I want to open an image as fast as possible to check. Nonetheless, when I'm not in a hurry but inspecting an image, I would prefer having many features that helps me viewing the details. As a consequence, I have 2 image viewers. However, this is also a problem, because it's hard managing both - sometimes I open the advanced one when I'm in a hurry and my computer lags - and it causes a lot of desorganization.
+
+Then, I got the idea of creating Supple Crystal. Supple Crystal solves this problem by giving the user both the fast mode and the polished mode. The fast mode is the default mode which opens as fast as possible so you won't have problem if you're in a hurry. The polished mode can be accessed from fast mode and has more advanced features. With those two modes, there is no need of having two image viewers nor causing yourself a lot of trouble.
+
 ## Installation and usage
 To build and install Supple Crystal from source you must follow the next steps:
 1. Get SFML libraries and DLLs.
@@ -60,8 +60,8 @@ To build and install Supple Crystal from source you must follow the next steps:
         |--- sfml-window-2.dll
         |--- ${Supple Crystal Executable}
 ```
+Notice that you may not change the names of the TTFs nor the DLLs.
 
-- - - Notice that you may not change the names of the TTFs nor the DLLs.
 You can also install a precompiled version of Supple Crystal that comes ready to use. 
 
 Once you have it, you can start using it:
