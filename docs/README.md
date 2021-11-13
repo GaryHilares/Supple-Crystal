@@ -62,6 +62,8 @@ To build and install Supple Crystal from source you must follow the next steps:
         |--- sfml-system-2.dll
         |--- sfml-window-2.dll
         |--- ${Supple Crystal Executable}
+        |--- assets/
+        |------- logo_bg-true_resized.png
 ```
 Notice that you may not change the names of the TTFs nor the DLLs.
 
