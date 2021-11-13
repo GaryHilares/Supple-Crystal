@@ -1,4 +1,4 @@
-
+#pragma once
 
 namespace App
 {
@@ -7,12 +7,13 @@ namespace App
     public:
         enum class Activity{FastMode, PolishedMode};
     private:
-        Activity current_activity;
-        int exit_code;
         bool do_exit;
+        int exit_code;
+        Activity current_activity;
         void runFastMode(const int argc, char* argv[]);
         void runPolishedMode(const int argc, char* argv[]);
     public:
+        SuppleCrystal();
         int run(const int argc, char* argv[]);
     };
 }

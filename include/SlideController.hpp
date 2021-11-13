@@ -1,3 +1,4 @@
+#pragma once
 #include <optional>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "ImageDisplay.hpp"
