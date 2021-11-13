@@ -48,13 +48,13 @@ To build and install Supple Crystal from source you must follow the next steps:
 1. Get SFML libraries and DLLs.
    - You can look at how to get SFML [here](https://www.sfml-dev.org/tutorials/2.5/). 
 2. Get Supple Crystal executables.
-   2.1. Fork the repository on GitHub.
-   2.2. Go to your fork of the repository and copy the link to clone your repository.
-   2.3. Go to Git on your local machine and use the command `git clone (your link)`.
-   2.4. Compile the project linking it to SFML libraries.
+   1. Fork the repository on GitHub.
+   2. Go to your fork of the repository and copy the link to clone your repository.
+   3. Go to Git on your local machine and use the command `git clone (your link)`.
+   4. Compile the project linking it to SFML libraries.
 3. Set up the file structure.
-   3.1. Create a folder to put the files.
-   3.2. Organize the following folder like this:
+   1. Create a folder to put the files.
+   2. Organize the following folder like this:
 ```
         | ${root folder}
         |--- PublicSans-Regular.ttf
