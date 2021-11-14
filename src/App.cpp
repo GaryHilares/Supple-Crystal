@@ -11,7 +11,7 @@
 #include <string>
 #include <windows.h>
 
-void App::SuppleCrystal::runFastMode(const int argc, char* argv[])
+void App::runFastMode(const int argc, char* argv[])
 {
     std::cout << "Fast mode" << std::endl;
     //Load fonts.
@@ -88,7 +88,7 @@ void App::SuppleCrystal::runFastMode(const int argc, char* argv[])
     }
 }
 
-void App::SuppleCrystal::runPolishedMode(const int argc, char* argv[])
+void App::runPolishedMode(const int argc, char* argv[])
 {
     std::cout << "Polished mode" << std::endl;
     //Load fonts.
@@ -165,7 +165,7 @@ void App::SuppleCrystal::runPolishedMode(const int argc, char* argv[])
     }
 }
 
-int App::SuppleCrystal::run(const int argc, char* argv[])
+int App::run(const int argc, char* argv[])
 {
     while(!do_exit)
     {
@@ -182,4 +182,4 @@ int App::SuppleCrystal::run(const int argc, char* argv[])
     return this->exit_code;
 }
 
-App::SuppleCrystal::SuppleCrystal(): do_exit(false), exit_code(0), current_activity(Activity::FastMode) {}
+App::App(): do_exit(false), exit_code(0), current_activity(Activity::FastMode) {}
