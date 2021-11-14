@@ -25,6 +25,8 @@ void PopupMenu::display()
 MenuInterface* PopupMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
+    if(!this->do_display)
+        return nullptr;
     return (position.y < pointCoords.y
         && position.y + this->buttons.size() * Constants::PopupMenu::Button::Height > pointCoords.y
         && position.x < pointCoords.x
