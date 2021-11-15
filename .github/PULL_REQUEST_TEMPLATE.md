@@ -24,7 +24,7 @@
 - Compiler: {Your compiler name}.
 <!-- TESTS: / -->
 
-<!-- ADDITIONAL_COMMENTS: Include it if you have any additional comments -->
-## Aditional comments:
+<!-- ADDITIONAL_CONTEXT: Include it if you have any other comment which is relevant for understanding your PR -->
+## Aditional context:
 {Your comments here; may be written in point form}.
-<!-- ADDITIONAL_COMMENTS: / -->
+<!-- ADDITIONAL_CONTEXT: / -->
