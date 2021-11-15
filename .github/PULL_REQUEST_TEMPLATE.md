@@ -1,9 +1,5 @@
 <!-- Please include only the parts whose include CONDITION is TRUE. If not, please DELETE it.  -->
 
-<!-- PULL_REQUEST_TITLE: Include always -->
-# {Pull Request title}
-<!-- PULL_REQUEST_TITLE: / -->
-
 <!-- CHANGES: Include always -->
 ## Changes:
 - {Make a list of the changes made by your PR}.
