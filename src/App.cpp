@@ -7,9 +7,9 @@
 #include "../include/UI/Elements/Menus/PopupMenu.hpp"
 #include "../include/UI/Settings/style-constants.hpp"
 #include "../include/utils.hpp"
+#include "../include/OSUtils.hpp"
 #include <iostream>
 #include <string>
-#include <windows.h>
 
 void App::runFastMode(const int argc, char* argv[])
 {
@@ -24,7 +24,7 @@ void App::runFastMode(const int argc, char* argv[])
     sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), filename.substr(filename.rfind("/")+1,filename.size()) + " - Supple Crystal: Fast mode");
     window.setIcon(32, 32, icon.getPixelsPtr());
-    ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
+    OS::maximizeWindow(window);
     //Loads and sets the image.
     ImageDisplay image_display(filename);
     image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
@@ -101,7 +101,7 @@ void App::runPolishedMode(const int argc, char* argv[])
     sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), filename.substr(filename.rfind("/")+1,filename.size()) + " - Supple Crystal: Polished mode");
     window.setIcon(32, 32, icon.getPixelsPtr());
-    ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
+    OS::maximizeWindow(window);
     //Loads and sets the image.
     ImageDisplay image_display(filename);
     image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
