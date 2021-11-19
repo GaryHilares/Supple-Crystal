@@ -45,18 +45,32 @@ Then, I got the idea of creating Supple Crystal. Supple Crystal solves this prob
 
 ## Installation and usage
 To build and install Supple Crystal from source you must follow the next steps:
-1. Get SFML libraries and DLLs.
-   - You can look at how to get SFML [here](https://www.sfml-dev.org/tutorials/2.5/). 
-2. Get Supple Crystal executables.
+1. Prepare the external libraries:
+   1. Get SFML 2.5.1.
+        - You can look at how to get SFML [here](https://www.sfml-dev.org/tutorials/2.5/).
+   2. Order the external libraries:
+        1. Create a folder called `extlibs` in the root folder.
+        2. Add the external libraries here. The minimal `extlibs` folder should look like this:
+           ```
+           | extlibs/
+           |--- SFML-2.5.1/
+           |------- bin/
+           |------- include/
+           |------- lib/
+           ```
+2. Build Supple Crystal:
    1. Fork the repository on GitHub.
    2. Go to your fork of the repository and copy the link to clone your repository.
    3. Go to Git on your local machine and use the command `git clone (your link)`.
-   4. Compile the project linking it to SFML libraries.
-3. Set up the file structure.
-   1. Create a folder to put the files.
-   2. Organize the following folder like this:
+   4. Set the variable CMAKE_BUILD_TYPE in `CMakefiles.txt` to "Release" or to "Debug" depending on what you want to build.
+   5. Use CMake to generate makefiles from `CMakelists.txt`.
+   6. Use the generated makefiles to build Supple Crystal
+
+After doing this process, Supple Crystal should appear inside a folder in `build/`.
+
+For the release version, it should appear like this:
 ```
-        | ${root folder}
+        | Release/
         |--- PublicSans-Regular.ttf
         |--- sfml-graphics-2.dll
         |--- sfml-system-2.dll
@@ -65,7 +79,19 @@ To build and install Supple Crystal from source you must follow the next steps:
         |--- assets/
         |------- logo_bg-true_resized.png
 ```
-Notice that you may not change the names of the TTFs nor the DLLs.
+
+For the debug version, it should appear like this:
+```
+        | Debug/
+        |--- PublicSans-Regular.ttf
+        |--- sfml-graphics-d-2.dll
+        |--- sfml-system-d-2.dll
+        |--- sfml-window-d-2.dll
+        |--- ${Supple Crystal Executable}
+        |--- assets/
+        |------- logo_bg-true_resized.png
+```
+Notice that you may not change the names of the TTFs, the DLLs nor the assets.
 
 You can also install a precompiled version of Supple Crystal that comes ready to use. 
 
