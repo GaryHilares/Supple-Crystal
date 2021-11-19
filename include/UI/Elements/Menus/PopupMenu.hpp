@@ -36,7 +36,7 @@ public:
      * @param pointCoords Coords to look at.
      * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
-    UIElement* containsPoint(sf::Vector2f pointCoords) override;
+    UIElement* getPointedElement(sf::Vector2f pointCoords) override;
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 

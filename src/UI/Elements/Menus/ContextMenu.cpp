@@ -10,7 +10,7 @@ void ContextMenu::processEvent(const sf::RenderWindow& reference_window, sf::Eve
         this->setPosition(coords);
         this->display();
     }
-    else if(!this->containsPoint(coords))
+    else if(!this->getPointedElement(coords))
     {
         this->hide();
     }
