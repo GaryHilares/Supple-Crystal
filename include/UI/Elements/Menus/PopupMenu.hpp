@@ -1,7 +1,7 @@
 #pragma once
 #include "../Buttons/PopupMenuButton.hpp"
 
-class PopupMenu: public MenuInterface
+class PopupMenu: public UIElement
 {
 private:
     std::vector<PopupMenuButton> buttons;
@@ -31,14 +31,14 @@ public:
      */
     void hide();
     /**
-     * @brief Returns the MenuInterface subclass object which contacts the coords given.
+     * @brief Returns the UIElement subclass object which contacts the coords given.
      * 
      * @param pointCoords Coords to look at.
-     * @return MenuInterface* A pointer to the MenuInterface which contacts the coord given or nullptr if there is no such MenuInterface.
+     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
-    MenuInterface* containsPoint(sf::Vector2f pointCoords) override;
+    UIElement* containsPoint(sf::Vector2f pointCoords) override;
     /**
-     * @brief Process an event and updates the MenuInterface subclass object accordingly.
+     * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
      * @param event Event to process.
      */

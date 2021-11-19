@@ -15,7 +15,7 @@ void PopupMenuButton::draw(sf::RenderTarget& target, sf::RenderStates states) co
     target.draw(this->text,states);
 }
 
-MenuInterface* PopupMenuButton::containsPoint(sf::Vector2f pointCoords)
+UIElement* PopupMenuButton::containsPoint(sf::Vector2f pointCoords)
 {
     return this->background.getGlobalBounds().contains(pointCoords.x,pointCoords.y) ? this : nullptr;
 }

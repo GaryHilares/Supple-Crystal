@@ -68,7 +68,7 @@ void App::runFastMode(const int argc, char* argv[])
             case sf::Event::MouseButtonReleased:
                 {
                     const sf::Vector2f coords = window.mapPixelToCoords({event.mouseButton.x,event.mouseButton.y});
-                    MenuInterface* menu_in_coords = context_menu.containsPoint(coords);
+                    UIElement* menu_in_coords = context_menu.containsPoint(coords);
                     if(menu_in_coords) menu_in_coords->processEvent(event);
                     context_menu.processEvent(window,event);
                 }
@@ -145,7 +145,7 @@ void App::runPolishedMode(const int argc, char* argv[])
             case sf::Event::MouseButtonReleased:
                 {
                     const sf::Vector2f coords = window.mapPixelToCoords({event.mouseButton.x,event.mouseButton.y});
-                    MenuInterface* menu_in_coords = context_menu.containsPoint(coords);
+                    UIElement* menu_in_coords = context_menu.containsPoint(coords);
                     if(menu_in_coords) menu_in_coords->processEvent(event);
                     context_menu.processEvent(window,event);
                 }

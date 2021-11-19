@@ -1,9 +1,9 @@
 #pragma once
-#include "../Menus/MenuInterface.hpp"
+#include "../UIElement.hpp"
 #include <functional>
 #include <string>
 
-class PopupMenuButton : public MenuInterface
+class PopupMenuButton : public UIElement
 {
 private:
     sf::RectangleShape background;
@@ -27,12 +27,12 @@ public:
      */
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     /**
-     * @brief Returns the MenuInterface which contacts the coords given.
+     * @brief Returns the UIElement which contacts the coords given.
      * 
      * @param pointCoords Coords to look at.
-     * @return MenuInterface* A pointer to the MenuInterface which contacts the coord given or nullptr if there is no such MenuInterface.
+     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
-    MenuInterface* containsPoint(sf::Vector2f pointCoords) override;
+    UIElement* containsPoint(sf::Vector2f pointCoords) override;
     /**
      * @brief Processes an event and changes the PopupMenuButton accordingly.
      * 

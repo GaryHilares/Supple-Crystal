@@ -22,7 +22,7 @@ void PopupMenu::display()
     this->do_display = true;
 }
 
-MenuInterface* PopupMenu::containsPoint(sf::Vector2f pointCoords)
+UIElement* PopupMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
     if(!this->do_display)
