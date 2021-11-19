@@ -10,7 +10,7 @@ public:
      * 
      * @param reference_window The window of reference.
      * @param mouse_event A mouse event to process.
-     * @throws Throws if the event type isn't MouseReleased.
+     * @throws Error if the event type isn't MouseReleased.
      */
     void processEvent(const sf::RenderWindow& reference_window, sf::Event mouse_event);
 };

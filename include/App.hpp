@@ -19,13 +19,11 @@ private:
      * 
      * @param argc The amount of program arguments.
      * @param argv Program arguments.
-     * @throws Never throws.
      */
     void runPolishedMode(const int argc, char* argv[]);
 public:
     /**
      * @brief Construct a new App object
-     * @throw Never throws.
      */
     App();
     /**
@@ -34,7 +32,6 @@ public:
      * @param argc The amount of program arguments.
      * @param argv Program arguments.
      * @return int The app exit code.
-     * @throws Never throws
      */
     int run(const int argc, char* argv[]);
 };

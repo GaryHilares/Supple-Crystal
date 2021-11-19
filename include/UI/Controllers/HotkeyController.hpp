@@ -14,14 +14,13 @@ public:
      * @brief Construct a new HotkeysController object.
      * 
      * @param new_hotkey_bindings Hotkey bindings to manage.
-     * @throws Never throws.
      */
     HotkeysController(std::unordered_map<sf::Keyboard::Key,std::function<void()>> new_hotkey_bindings);
     /**
      * @brief Checks if any hotkey has been triggered.
      * 
      * @param key_released_event A key released event to check.
-     * @throws Terminates the program if the event isn't a key released event.
+     * @throws FatalError Terminates the program if the event isn't a key released event.
      */
     void checkForHotkeys(sf::Event key_released_event);
 };

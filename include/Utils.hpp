@@ -18,7 +18,7 @@ std::string replaceAllOcurrencesOfCharacter(std::string str, char to_replace, ch
  * 
  * @param window The window which threw the resize event.
  * @param resize_event The resize event triggered by the resize button.
- * @param throw Terminates the program if sf::Event is not a resize event.
+ * @param throw FatalError Terminates the program if sf::Event is not a resize event.
  */
 void preventWindowContentResize(sf::RenderWindow& window, sf::Event resize_event);
 
@@ -29,7 +29,7 @@ void preventWindowContentResize(sf::RenderWindow& window, sf::Event resize_event
  * @param filename Name of the file.
  * @param fallbackDirectories Paths to the directories to search the files.
  * @return LoadableObject The loaded object.
- * @throw Throws if the object isn't found in any of the directories.
+ * @throw Error if the object isn't found in any of the directories.
  */
 template <class LoadableObject> LoadableObject loadFromFileWithFallbacks(const std::string& filename, const std::vector<std::string>& fallbackDirectories){
     LoadableObject loaded_object;

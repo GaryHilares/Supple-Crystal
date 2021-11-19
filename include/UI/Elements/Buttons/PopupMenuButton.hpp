@@ -14,9 +14,9 @@ public:
     /**
      * @brief Construct a new PopupMenuButton object.
      * 
-     * @param text_to_display 
-     * @param new_font 
-     * @param new_on_click
+     * @param text_to_display Text to display in the button.
+     * @param new_font A reference to the font to use on the button. If the font is destroyed before the button, a dangling reference is generated.
+     * @param new_on_click Function to run when the button is clicked.
      */
     PopupMenuButton(const std::string& text_to_display, const sf::Font& new_font, const std::function<void()>& new_on_click);
     /**
@@ -24,7 +24,6 @@ public:
      * 
      * @param target RenderTarget to draw the object.
      * @param states The states in which the object should be drawn.
-     * @throw Never throws.
      */
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     /**
@@ -32,14 +31,12 @@ public:
      * 
      * @param pointCoords Coords to look at.
      * @return MenuInterface* A pointer to the MenuInterface which contacts the coord given or nullptr if there is no such MenuInterface.
-     * @throw Never throws.
      */
     MenuInterface* containsPoint(sf::Vector2f pointCoords) override;
     /**
      * @brief Processes an event and changes the PopupMenuButton accordingly.
      * 
      * @param event Event to process.
-     * @throw Never throws.
      */
     void processEvent(sf::Event event) override;
 };
