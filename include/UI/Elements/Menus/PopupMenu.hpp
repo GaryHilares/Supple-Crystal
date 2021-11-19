@@ -40,7 +40,8 @@ public:
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
+     * @param reference_window Window of reference to process the event. 
      * @param event Event to process.
      */
-    void processEvent(sf::Event event) override;
+    void processEvent(const sf::RenderWindow& reference_window, sf::Event event) override;
 };

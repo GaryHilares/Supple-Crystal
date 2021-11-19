@@ -34,7 +34,7 @@ UIElement* PopupMenu::getPointedElement(sf::Vector2f pointCoords)
         ? &this->buttons[(pointCoords.y - this->getPosition().y)/Constants::PopupMenu::Button::Height] : nullptr;
 }
 
-void PopupMenu::processEvent(sf::Event event)
+void PopupMenu::processEvent(const sf::RenderWindow& reference_window, sf::Event event)
 {
     throw std::exception();
 }

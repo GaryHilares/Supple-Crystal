@@ -14,9 +14,10 @@ public:
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
+     * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
-    virtual void processEvent(sf::Event event) = 0;
+    virtual void processEvent(const sf::RenderWindow& reference_window, sf::Event event) = 0;
     /**
      * @brief Draws the UIElement subclass object.
      * 
