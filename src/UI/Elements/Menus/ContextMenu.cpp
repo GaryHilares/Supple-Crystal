@@ -8,10 +8,10 @@ void ContextMenu::processEvent(const sf::RenderWindow& reference_window, sf::Eve
     if(mouse_event.mouseButton.button == sf::Mouse::Right)
     {
         this->setPosition(coords);
-        this->display();
+        this->display(true);
     }
     else if(!this->getPointedElement(coords))
     {
-        this->hide();
+        this->display(false);
     }
 }

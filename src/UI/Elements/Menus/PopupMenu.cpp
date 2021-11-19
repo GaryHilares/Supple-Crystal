@@ -17,9 +17,9 @@ void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 }
 
-void PopupMenu::display()
+void PopupMenu::display(bool new_do_display)
 {
-    this->do_display = true;
+    this->do_display = new_do_display;
 }
 
 UIElement* PopupMenu::getPointedElement(sf::Vector2f pointCoords)
@@ -32,14 +32,4 @@ UIElement* PopupMenu::getPointedElement(sf::Vector2f pointCoords)
         && position.x < pointCoords.x
         && position.x + Constants::PopupMenu::Button::Width > pointCoords.x)
         ? &this->buttons[(pointCoords.y - this->getPosition().y)/Constants::PopupMenu::Button::Height] : nullptr;
-}
-
-void PopupMenu::processEvent(const sf::RenderWindow& reference_window, sf::Event event)
-{
-    throw std::exception();
-}
-
-void PopupMenu::hide()
-{
-    this->do_display = false;
 }

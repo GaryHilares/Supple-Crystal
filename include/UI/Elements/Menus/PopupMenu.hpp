@@ -23,13 +23,9 @@ public:
     /**
      * @brief Displays the PopupMenu.
      *
+     * @param new_do_display Whether the PopupMenu should be displayed or not.
      */
-    void display();
-    /**
-     * @brief Hides the PopupMenu
-     * 
-     */
-    void hide();
+    void display(bool new_do_display);
     /**
      * @brief Returns the UIElement subclass object which contacts the coords given.
      * 
@@ -42,6 +38,7 @@ public:
      * 
      * @param reference_window Window of reference to process the event. 
      * @param event Event to process.
+     * @warning This method hansn't implemented yet.
      */
-    void processEvent(const sf::RenderWindow& reference_window, sf::Event event) override;
+    virtual void processEvent(const sf::RenderWindow& reference_window, sf::Event event) = 0;
 };
