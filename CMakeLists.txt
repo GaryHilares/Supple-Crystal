@@ -4,7 +4,7 @@ project(Supple-Crystal VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_CXX_STANDARD 17)
 
 if(NOT (CMAKE_BUILD_TYPE STREQUAL "Release") AND NOT (CMAKE_BUILD_TYPE STREQUAL "Debug"))
