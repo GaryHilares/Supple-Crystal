@@ -22,5 +22,5 @@ public:
      * @param key_released_event A key released event to check.
      * @throws FatalError Terminates the program if the event isn't a key released event.
      */
-    void checkForHotkeys(sf::Event key_released_event);
+    void checkForHotkeys(sf::Event key_released_event) const;
 };
