@@ -10,6 +10,7 @@ private:
     const sf::Font& font;
     sf::Text text;
     std::function<void()> on_click;
+    
 public:
     /**
      * @brief Construct a new PopupMenuButton object.
@@ -19,6 +20,7 @@ public:
      * @param new_on_click Function to run when the button is clicked.
      */
     PopupMenuButton(const std::string& text_to_display, const sf::Font& new_font, const std::function<void()>& new_on_click);
+
     /**
      * @brief Draws the object to a RenderTarget.
      * 
@@ -26,6 +28,7 @@ public:
      * @param states The states in which the object should be drawn.
      */
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
     /**
      * @brief Returns the UIElement which contacts the coords given.
      * 
@@ -33,6 +36,7 @@ public:
      * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
     UIElement* getPointedElement(sf::Vector2f pointCoords) override;
+
     /**
      * @brief Processes an event and changes the PopupMenuButton accordingly.
      * 

@@ -5,6 +5,7 @@ class ContextMenu: public PopupMenu
 {
 public:
     using PopupMenu::PopupMenu;
+    
     /**
      * @brief Processes an event and updates the ContextMenu accordingly.
      * 

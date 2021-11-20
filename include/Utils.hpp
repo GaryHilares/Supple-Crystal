@@ -13,6 +13,7 @@
  * @return std::string A copy of the string of text with the cars replaced.
  */
 std::string replaceAllOcurrencesOfCharacter(std::string str, char to_replace, char replacement);
+
 /**
  * @brief Prevents the default resizing SFML does to the contents of a window.
  * 

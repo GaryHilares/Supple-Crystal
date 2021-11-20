@@ -11,6 +11,7 @@ public:
      * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
     virtual UIElement* getPointedElement(sf::Vector2f) = 0;
+
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
@@ -18,6 +19,7 @@ public:
      * @param event Event to process.
      */
     virtual void processEvent(const sf::RenderWindow& reference_window, sf::Event event) = 0;
+    
     /**
      * @brief Draws the UIElement subclass object.
      * 

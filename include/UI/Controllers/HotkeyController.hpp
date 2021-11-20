@@ -8,6 +8,7 @@ class HotkeysController: public Controller
 {
 private:
     const std::unordered_map<sf::Keyboard::Key,std::function<void()>> hotkey_bindings;
+    
 public:
     /**
      * @brief Construct a new HotkeysController object.
@@ -15,6 +16,7 @@ public:
      * @param new_hotkey_bindings Hotkey bindings to manage.
      */
     HotkeysController(std::unordered_map<sf::Keyboard::Key,std::function<void()>> new_hotkey_bindings);
+
     /**
      * @brief Checks if any hotkey has been triggered.
      * 
