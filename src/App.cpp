@@ -10,7 +10,7 @@
 #include "../include/OSUtils.hpp"
 #include <iostream>
 
-std::pair<std::string,std::string> App::parseArguments(const int argc, char* argv[])
+const std::pair<std::string,std::string> App::parseArguments(const int argc, char* argv[])
 {
     if(argc != 2)
     {
@@ -51,7 +51,7 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
                                             {sf::Keyboard::Left,[&](){image_display.rotate(90);}},
                                             {sf::Keyboard::Right,[&](){image_display.rotate(-90);}}
                                          });
-    SlideController slide_controller;
+    SlideController slide_controller(image_display);
     while(window.isOpen())
     {
         /* Event handling: Closing window and context menu */
@@ -70,6 +70,9 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
                 window.close();
                 this->do_exit = true;
                 break;
+            case sf::Event::MouseMoved:
+                slide_controller.checkForUpdates(event);
+                break;
             case sf::Event::Resized:
                 preventWindowContentResize(window,event);
                 break;
@@ -82,13 +85,12 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
                 }
                 break;
             case sf::Event::KeyReleased:
-                hotkeys_controller.checkForHotkeys(event);
+                hotkeys_controller.checkForUpdates(event);
                 break;
             default:
                 break;
             }
         }
-        slide_controller.updateIfEnabled(window,image_display);
         /* Display */
         window.clear(sf::Color(Constants::background_color));
         window.draw(image_display);
