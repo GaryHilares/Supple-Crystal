@@ -13,6 +13,6 @@ public:
      * @param mouse_event A mouse event to process.
      * @throws Error if the event type isn't MouseReleased.
      */
-    void processEvent(sf::Event mouse_event);
+    void processEvent(sf::Event mouse_event) override;
 };
 

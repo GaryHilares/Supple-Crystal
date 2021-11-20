@@ -45,7 +45,7 @@ public:
      * @param event Event to process.
      * @warning This method hansn't implemented yet.
      */
-    virtual void processEvent(sf::Event event);
+    virtual void processEvent(sf::Event event) override;
 
     /**
      * @brief Finds if a point is inside the bounds of the object or not.
