@@ -1,8 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "../UIElement.hpp"
 #include <string>
 
-class ImageDisplay : public sf::Drawable, public sf::Transformable
+class ImageDisplay : public UIElement
 {
 private:
     sf::Texture image;
@@ -15,6 +15,13 @@ public:
      * @param filename Filename of image to load.
      */
     ImageDisplay(const std::string& filename);
+
+    /**
+     * @brief By the time being, does nothing.
+     * 
+     * @param event An event to be ignored.
+     */
+    void processEvent(sf::Event event) override;
 
     /**
      * @brief Draws the object.

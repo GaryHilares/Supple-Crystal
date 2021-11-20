@@ -8,6 +8,8 @@ ImageDisplay::ImageDisplay(const std::string& filename)
     this->sprite.setTexture(this->image);
 }
 
+void ImageDisplay::processEvent(sf::Event event) {}
+
 void ImageDisplay::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= this->getTransform();
