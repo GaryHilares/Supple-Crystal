@@ -35,8 +35,8 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
     OS::maximizeWindow(window);
     //Loads and sets the image.
     ImageDisplay image_display(filename);
-    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
+    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     //Creates the context_menu.
     ContextMenu context_menu({
                             PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();}),
