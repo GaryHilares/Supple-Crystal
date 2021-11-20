@@ -6,6 +6,15 @@ class PopupMenu: public UIElement
 private:
     std::vector<PopupMenuButton> buttons;
     bool do_display;
+
+    /**
+     * @brief Returns the UIElement subclass object which contacts the coords given.
+     * 
+     * @param pointCoords Coords to look at.
+     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
+     */
+    UIElement* getButtonFromCoords(sf::Vector2f pointCoords);
+
 public:
     /**
      * @brief Construct a new PopupMenu object.
@@ -28,14 +37,6 @@ public:
      * @param new_do_display Whether the PopupMenu should be displayed or not.
      */
     void display(bool new_do_display);
-
-    /**
-     * @brief Returns the UIElement subclass object which contacts the coords given.
-     * 
-     * @param pointCoords Coords to look at.
-     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
-     */
-    UIElement* getPointedElement(sf::Vector2f pointCoords) override;
     
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
@@ -44,5 +45,13 @@ public:
      * @param event Event to process.
      * @warning This method hansn't implemented yet.
      */
-    virtual void processEvent(const sf::RenderWindow& reference_window, sf::Event event) = 0;
+    virtual void processEvent(sf::Event event);
+
+    /**
+     * @brief Finds if a point is inside the bounds of the object or not.
+     * 
+     * @param pointCoords Coords to check.
+     * @return bool True if point is in the bounds of the object, false otherwise.
+     */
+    bool containsPoint(sf::Vector2f pointCoords);
 };

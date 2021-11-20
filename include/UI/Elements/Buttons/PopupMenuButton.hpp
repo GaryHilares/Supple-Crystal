@@ -30,18 +30,10 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     /**
-     * @brief Returns the UIElement which contacts the coords given.
-     * 
-     * @param pointCoords Coords to look at.
-     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
-     */
-    UIElement* getPointedElement(sf::Vector2f pointCoords) override;
-
-    /**
      * @brief Processes an event and changes the PopupMenuButton accordingly.
      * 
      * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
-    void processEvent(const sf::RenderWindow& reference_window, sf::Event event) override;
+    void processEvent(sf::Event event) override;
 };

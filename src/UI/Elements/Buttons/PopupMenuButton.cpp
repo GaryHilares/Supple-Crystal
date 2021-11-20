@@ -15,12 +15,7 @@ void PopupMenuButton::draw(sf::RenderTarget& target, sf::RenderStates states) co
     target.draw(this->text,states);
 }
 
-UIElement* PopupMenuButton::getPointedElement(sf::Vector2f pointCoords)
-{
-    return this->background.getGlobalBounds().contains(pointCoords.x,pointCoords.y) ? this : nullptr;
-}
-
-void PopupMenuButton::processEvent(const sf::RenderWindow& reference_window, sf::Event mouse_event)
+void PopupMenuButton::processEvent(sf::Event mouse_event)
 {
     if(mouse_event.type == sf::Event::MouseButtonReleased && mouse_event.mouseButton.button == sf::Mouse::Left)
         return this->on_click();

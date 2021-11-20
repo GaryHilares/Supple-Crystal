@@ -77,12 +77,7 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
                 preventWindowContentResize(window,event);
                 break;
             case sf::Event::MouseButtonReleased:
-                {
-                    const sf::Vector2f coords = window.mapPixelToCoords({event.mouseButton.x,event.mouseButton.y});
-                    UIElement* menu_in_coords = context_menu.getPointedElement(coords);
-                    if(menu_in_coords) menu_in_coords->processEvent(window,event);
-                    context_menu.processEvent(window,event);
-                }
+                context_menu.processEvent(event);
                 break;
             case sf::Event::KeyReleased:
                 hotkeys_controller.checkForUpdates(event);

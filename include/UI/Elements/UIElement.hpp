@@ -4,13 +4,6 @@
 class UIElement: public sf::Drawable, public sf::Transformable
 {
 public:
-    /**
-     * @brief Returns the UIElement subclass object which contacts the coords given.
-     * 
-     * @param pointCoords Coords to look at.
-     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
-     */
-    virtual UIElement* getPointedElement(sf::Vector2f) = 0;
 
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
@@ -18,7 +11,7 @@ public:
      * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
-    virtual void processEvent(const sf::RenderWindow& reference_window, sf::Event event) = 0;
+    virtual void processEvent(sf::Event event) = 0;
     
     /**
      * @brief Draws the UIElement subclass object.
