@@ -15,13 +15,8 @@ void PopupMenuButton::draw(sf::RenderTarget& target, sf::RenderStates states) co
     target.draw(this->text,states);
 }
 
-MenuInterface* PopupMenuButton::containsPoint(sf::Vector2f pointCoords)
+void PopupMenuButton::processEvent(sf::Event mouse_event)
 {
-    return this->background.getGlobalBounds().contains(pointCoords.x,pointCoords.y) ? this : nullptr;
-}
-
-void PopupMenuButton::processEvent(sf::Event event)
-{
-    if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+    if(mouse_event.type == sf::Event::MouseButtonReleased && mouse_event.mouseButton.button == sf::Mouse::Left)
         return this->on_click();
 }

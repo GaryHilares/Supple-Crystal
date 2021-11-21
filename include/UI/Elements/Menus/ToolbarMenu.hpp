@@ -1,12 +1,13 @@
 #pragma once
 #include "../Buttons/Button.hpp"
+#include "../UIElement.hpp"
 #include <memory>
 
-class PopupMenu: public UIElement
+class ToolbarMenu: public UIElement
 {
 private:
     std::vector<std::shared_ptr<Button>> buttons;
-    bool do_display;
+    sf::RectangleShape background;
 
     /**
      * @brief Returns the UIElement subclass object which contacts the coords given.
@@ -15,16 +16,13 @@ private:
      * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
      */
     UIElement* getButtonFromCoords(sf::Vector2f pointCoords);
-
 public:
-    virtual ~PopupMenu() = default;
-
     /**
      * @brief Construct a new PopupMenu object.
      * 
      * @param new_buttons Vector of std::shared_ptr<Button> objects to include in the PopupMenu.
      */
-    PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons);
+    ToolbarMenu(const std::vector<std::shared_ptr<Button>>& new_buttons);
 
     /**
      * @brief Draws the PopupMenu.
@@ -34,13 +32,6 @@ public:
      */
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    /**
-     * @brief Displays the PopupMenu.
-     *
-     * @param new_do_display Whether the PopupMenu should be displayed or not.
-     */
-    void display(bool new_do_display);
-    
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 

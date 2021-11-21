@@ -1,25 +1,20 @@
 #pragma once
 #include "Button.hpp"
 #include <functional>
-#include <string>
 
-class PopupMenuButton : public Button
+class ToolbarMenuButton: public Button
 {
 private:
     sf::RectangleShape background;
-    const sf::Font& font;
-    sf::Text text;
     std::function<void()> on_click;
-    
+
 public:
     /**
-     * @brief Construct a new PopupMenuButton object.
+     * @brief Construct a new ToolbarMenuButton object.
      * 
-     * @param text_to_display Text to display in the button.
-     * @param new_font A reference to the font to use on the button. If the font is destroyed before the button, a dangling reference is generated.
      * @param new_on_click Function to run when the button is clicked.
      */
-    PopupMenuButton(const std::string& text_to_display, const sf::Font& new_font, const std::function<void()>& new_on_click);
+    ToolbarMenuButton(const std::function<void()>& new_on_click);
 
     /**
      * @brief Draws the object to a RenderTarget.
@@ -30,7 +25,7 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     /**
-     * @brief Processes an event and changes the PopupMenuButton accordingly.
+     * @brief Processes an event and changes the ToolbarMenuButton accordingly.
      * 
      * @param reference_window Window of reference to process the event.
      * @param event Event to process.

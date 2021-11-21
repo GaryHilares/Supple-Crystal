@@ -9,17 +9,25 @@
 #include "../include/utils.hpp"
 #include "../include/OSUtils.hpp"
 #include <iostream>
-#include <string>
 
-void App::runFastMode(const int argc, char* argv[])
+const std::pair<std::string,std::string> App::parseArguments(const int argc, char* argv[])
+{
+    if(argc != 2)
+    {
+        std::cerr << "Invalid number of arguments!" << std::endl;
+        throw;
+    }
+    const std::string file_path = replaceAllOcurrencesOfCharacter(std::string(argv[0]),'\\','/');
+    const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
+    const std::string filename = replaceAllOcurrencesOfCharacter(std::string(argv[1]),'\\','/');
+    return {folder_path,filename};
+}
+
+void App::runFastMode(const std::string folder_path, const std::string filename)
 {
     std::cout << "Fast mode" << std::endl;
     //Load fonts.
-    const std::string file_path = replaceAllOcurrencesOfCharacter(std::string(argv[0]),'\\','/');
-    const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
     sf::Font font = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    //Gets the filename.
-    const std::string filename = replaceAllOcurrencesOfCharacter(std::string(argv[1]),'\\','/');
     //Opens and sets the window.
     sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), filename.substr(filename.rfind("/")+1,filename.size()) + " - Supple Crystal: Fast mode");
@@ -27,15 +35,15 @@ void App::runFastMode(const int argc, char* argv[])
     OS::maximizeWindow(window);
     //Loads and sets the image.
     ImageDisplay image_display(filename);
-    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
+    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     //Creates the context_menu.
     ContextMenu context_menu({
-                            PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();}),
-                            PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);}),
-                            PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);}),
-                            PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});}),
-                            PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});})
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);})),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();})),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);})),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});})),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});}))
                            });
     HotkeysController hotkeys_controller({
                                             {sf::Keyboard::Add,[&](){image_display.scale(1.1,1.1);}},
@@ -43,7 +51,7 @@ void App::runFastMode(const int argc, char* argv[])
                                             {sf::Keyboard::Left,[&](){image_display.rotate(90);}},
                                             {sf::Keyboard::Right,[&](){image_display.rotate(-90);}}
                                          });
-    SlideController slide_controller;
+    SlideController slide_controller(image_display);
     while(window.isOpen())
     {
         /* Event handling: Closing window and context menu */
@@ -62,24 +70,22 @@ void App::runFastMode(const int argc, char* argv[])
                 window.close();
                 this->do_exit = true;
                 break;
+            case sf::Event::MouseMoved:
+                slide_controller.checkForUpdates(event);
+                break;
             case sf::Event::Resized:
                 preventWindowContentResize(window,event);
                 break;
             case sf::Event::MouseButtonReleased:
-                {
-                    const sf::Vector2f coords = window.mapPixelToCoords({event.mouseButton.x,event.mouseButton.y});
-                    MenuInterface* menu_in_coords = context_menu.containsPoint(coords);
-                    if(menu_in_coords) menu_in_coords->processEvent(event);
-                    context_menu.processEvent(window,event);
-                }
+                context_menu.processEvent(event);
                 break;
             case sf::Event::KeyReleased:
-                hotkeys_controller.checkForHotkeys(event);
+                hotkeys_controller.checkForUpdates(event);
+                break;
             default:
                 break;
             }
         }
-        slide_controller.updateIfEnabled(window,image_display);
         /* Display */
         window.clear(sf::Color(Constants::background_color));
         window.draw(image_display);
@@ -88,94 +94,27 @@ void App::runFastMode(const int argc, char* argv[])
     }
 }
 
-void App::runPolishedMode(const int argc, char* argv[])
+void App::runPolishedMode(const std::string folder_path, const std::string filename)
 {
     std::cout << "Polished mode" << std::endl;
-    //Load fonts.
-    const std::string file_path = replaceAllOcurrencesOfCharacter(std::string(argv[0]),'\\','/');
-    const std::string folder_path = file_path.substr(0,file_path.rfind("/")) + "/";
-    sf::Font font = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    //Gets the filename.
-    const std::string filename = replaceAllOcurrencesOfCharacter(std::string(argv[1]),'\\','/');
-    //Opens and sets the window.
-    sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{folder_path,"","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), filename.substr(filename.rfind("/")+1,filename.size()) + " - Supple Crystal: Polished mode");
-    window.setIcon(32, 32, icon.getPixelsPtr());
-    OS::maximizeWindow(window);
-    //Loads and sets the image.
-    ImageDisplay image_display(filename);
-    image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
-    image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
-    //Creates the context_menu.
-    ContextMenu context_menu({
-                            PopupMenuButton("Fast Mode",font,[&](){this->current_activity = Activity::FastMode; window.close();}),
-                            PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);}),
-                            PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);}),
-                            PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});}),
-                            PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});})
-                           });
-    HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,[&](){image_display.scale(1.1,1.1);}},
-                                            {sf::Keyboard::Subtract,[&](){image_display.scale(0.8,0.8);}},
-                                            {sf::Keyboard::Left,[&](){image_display.rotate(90);}},
-                                            {sf::Keyboard::Right,[&](){image_display.rotate(-90);}}
-                                         });
-    SlideController slide_controller;
-    while(window.isOpen())
-    {
-        /* Event handling: Closing window and context menu */
-        sf::Event event;
-        while(window.pollEvent(event))
-        {
-            switch(event.type)
-            {
-            case sf::Event::LostFocus:
-                slide_controller.setEnabled(false);
-                break;
-            case sf::Event::GainedFocus:
-                slide_controller.setEnabled(true);
-                break;
-            case sf::Event::Closed:
-                window.close();
-                this->do_exit = true;
-                break;
-            case sf::Event::Resized:
-                preventWindowContentResize(window,event);
-                break;
-            case sf::Event::MouseButtonReleased:
-                {
-                    const sf::Vector2f coords = window.mapPixelToCoords({event.mouseButton.x,event.mouseButton.y});
-                    MenuInterface* menu_in_coords = context_menu.containsPoint(coords);
-                    if(menu_in_coords) menu_in_coords->processEvent(event);
-                    context_menu.processEvent(window,event);
-                }
-                break;
-            case sf::Event::KeyReleased:
-                hotkeys_controller.checkForHotkeys(event);
-            default:
-                break;
-            }
-        }
-        slide_controller.updateIfEnabled(window,image_display);
-        /* Display */
-        window.clear(sf::Color(Constants::background_color));
-        window.draw(image_display);
-        window.draw(context_menu);
-        window.display();
-    }
+    this->do_exit = true;
+    this->exit_code = 0;
 }
 
 int App::run(const int argc, char* argv[])
 {
+    const std::pair<std::string,std::string> arguments = this->parseArguments(argc,argv);
+    const std::string folder_path = arguments.first;
+    const std::string filename = arguments.second;
     while(!do_exit)
     {
         switch(current_activity)
         {
         case Activity::FastMode:
-            this->runFastMode(argc,argv);
+            this->runFastMode(folder_path,filename);
             break;
         case Activity::PolishedMode:
-            this->runPolishedMode(argc,argv);
+            this->runPolishedMode(folder_path,filename);
             break;
         }
     }

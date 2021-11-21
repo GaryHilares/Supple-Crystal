@@ -1,26 +1,35 @@
 #pragma once
 #include <optional>
-#include "../Elements/Displays/ImageDisplay.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "../Elements/Displays/ImageDisplay.hpp"
+#include "Controller.hpp"
 
-class SlideController
+class SlideController: public Controller
 {
 private:
     bool enabled;
     std::optional<sf::Vector2i> last_clicked_mouse_position;
+    ImageDisplay& image_display;
+    
 public:
-    SlideController();
+    /**
+     * @brief Construct a new SlideController object
+     * 
+     * @param new_image_display A reference to the image to control.
+     */
+    SlideController(ImageDisplay& new_image_display);
+
     /**
      * @brief Set whether the SlideController is enabled or not.
      * 
      * @param new_enabled New enabled value.
      */
     void setEnabled(const bool new_enabled);
+
     /**
-     * @brief If enabled, moves the ImageDisplay if the user is dragging the screen with the mouse.
+     * @brief Check for MouseMoved events and slides the image accordingly.
      * 
-     * @param window The window of reference for the movement.
-     * @param image_display The ImageDisplay to move.
+     * @param event Event to check for updates.
      */
-    void updateIfEnabled(const sf::RenderWindow& window, ImageDisplay& image_display);
+    void checkForUpdates(sf::Event event) override;
 };
