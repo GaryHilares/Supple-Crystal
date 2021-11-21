@@ -4,6 +4,8 @@
 class UIElement: public sf::Drawable, public sf::Transformable
 {
 public:
+    virtual ~UIElement() = default;
+
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 

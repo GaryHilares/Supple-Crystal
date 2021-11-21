@@ -2,10 +2,10 @@
 #include "../../../../include/UI/Settings/style-constants.hpp"
 #include <iostream>
 
-PopupMenu::PopupMenu(const std::vector<PopupMenuButton>& new_buttons): buttons(new_buttons), do_display(false)
+PopupMenu::PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons): buttons(new_buttons), do_display(false)
 {
-    for(std::vector<PopupMenuButton>::size_type i = 0; i < this->buttons.size(); i++)
-        this->buttons[i].setPosition(0,i*Constants::PopupMenu::Button::Height);
+    for(std::vector<std::shared_ptr<Button>>::size_type i = 0; i < this->buttons.size(); i++)
+        this->buttons[i]->setPosition(0,i*Constants::PopupMenu::Button::Height);
 }
 
 void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -13,8 +13,8 @@ void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     if(this->do_display)
     {
         states.transform *= this->getTransform();
-        for(const PopupMenuButton& button: this->buttons)
-            target.draw(button,states);
+        for(const std::shared_ptr<Button>& button: this->buttons)
+            target.draw(*button,states);
     }
 }
 
@@ -26,7 +26,7 @@ void PopupMenu::display(bool new_do_display)
 UIElement* PopupMenu::getButtonFromCoords(sf::Vector2f pointCoords)
 {
     return this->containsPoint(pointCoords)
-        ? &this->buttons[(pointCoords.y - this->getPosition().y)/Constants::PopupMenu::Button::Height] : nullptr;
+        ? dynamic_cast<UIElement*>(this->buttons[(pointCoords.y - this->getPosition().y)/Constants::PopupMenu::Button::Height].get()) : nullptr;
 }
 
 void PopupMenu::processEvent(sf::Event event)

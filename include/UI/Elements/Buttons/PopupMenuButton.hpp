@@ -3,7 +3,12 @@
 #include <functional>
 #include <string>
 
-class PopupMenuButton : public UIElement
+class Button : public UIElement{
+public:
+    virtual ~Button() = default;
+};
+
+class PopupMenuButton : public Button
 {
 private:
     sf::RectangleShape background;

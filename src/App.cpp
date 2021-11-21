@@ -39,11 +39,11 @@ void App::runFastMode(const std::string folder_path, const std::string filename)
     image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     //Creates the context_menu.
     ContextMenu context_menu({
-                            PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();}),
-                            PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);}),
-                            PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);}),
-                            PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});}),
-                            PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});})
+                    std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,[&](){image_display.rotate(-90);})),
+                    std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,[&](){this->current_activity = Activity::PolishedMode; window.close();})),
+                    std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,[&](){image_display.rotate(90);})),
+                    std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,[&](){image_display.scale({1.15,1.15});})),
+                    std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,[&](){image_display.scale({0.85,0.85});}))
                            });
     HotkeysController hotkeys_controller({
                                             {sf::Keyboard::Add,[&](){image_display.scale(1.1,1.1);}},

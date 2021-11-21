@@ -1,10 +1,11 @@
 #pragma once
 #include "../Buttons/PopupMenuButton.hpp"
+#include <memory>
 
 class PopupMenu: public UIElement
 {
 private:
-    std::vector<PopupMenuButton> buttons;
+    std::vector<std::shared_ptr<Button>> buttons;
     bool do_display;
 
     /**
@@ -16,12 +17,14 @@ private:
     UIElement* getButtonFromCoords(sf::Vector2f pointCoords);
 
 public:
+    virtual ~PopupMenu() = default;
+
     /**
      * @brief Construct a new PopupMenu object.
      * 
-     * @param new_buttons Vector of PopupMenuButton objects to include in the PopupMenu.
+     * @param new_buttons Vector of std::shared_ptr<Button> objects to include in the PopupMenu.
      */
-    PopupMenu(const std::vector<PopupMenuButton>& new_buttons = {});
+    PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons = {});
 
     /**
      * @brief Draws the PopupMenu.
