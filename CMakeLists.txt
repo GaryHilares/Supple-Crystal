@@ -7,6 +7,10 @@ enable_testing()
 set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 if(NOT (CMAKE_BUILD_TYPE STREQUAL "Release") AND NOT (CMAKE_BUILD_TYPE STREQUAL "Debug"))
     message(FATAL_ERROR "CMAKE_BUILD_TYPE not recognized.")
 endif()
