@@ -9,12 +9,18 @@ private:
     sf::Sprite sprite;
 
 public:
+    ImageDisplay() = default;
+
     /**
      * @brief Construct a new ImageDisplay object.
      * 
      * @param filename Filename of image to load.
      */
     ImageDisplay(const std::string& filename);
+
+    ImageDisplay(const ImageDisplay& filename);
+
+    void operator=(const ImageDisplay& other);
 
     /**
      * @brief By the time being, does nothing.
