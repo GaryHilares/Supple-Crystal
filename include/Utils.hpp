@@ -41,6 +41,11 @@ template <class LoadableObject> LoadableObject loadFromFileWithFallbacks(const s
     throw;
 }
 
+/**
+ * @brief A ciclical std::vector.
+ * 
+ * @tparam T The class to create the CiclicalITerator of.
+ */
 template <class T>
 class CiclicalIterator
 {
