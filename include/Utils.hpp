@@ -2,6 +2,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <experimental/filesystem>
 #include <string>
 
 /**
@@ -39,3 +40,52 @@ template <class LoadableObject> LoadableObject loadFromFileWithFallbacks(const s
             return loaded_object;
     throw;
 }
+
+template <class T>
+class CiclicalIterator
+{
+private:
+    std::vector<T> data;
+    typename std::vector<T>::size_type index;
+
+public:
+    CiclicalIterator(): data(), index(0) {}
+    void push(T val)
+    {
+        data.push_back(val);
+    }
+    T& next()
+    {
+        if(index == data.size() - 1)
+            index = 0;
+        else
+            index++;
+        return data[index];
+    }
+    T& prev()
+    {
+        if(index == 0)
+            index = data.size() - 1;
+        else
+            index--;
+        return data[index];
+    }
+    T& cur()
+    {
+        return data[index];
+    }
+    void search(T val)
+    {
+        auto new_index = std::find(data.begin(),data.end(),val);
+        if(new_index != data.end())
+            this->index = std::distance(data.begin(),new_index);
+    }
+};
+
+template<class T>
+bool in(const T& x, std::initializer_list<T> c)
+{
+  return std::find(c.begin(), c.end(), x) != c.end();
+}
+
+bool isSupportedImageType(std::experimental::filesystem::path file);

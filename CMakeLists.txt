@@ -25,7 +25,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_executable(Supple-Crystal ${CPPSources} resource/icon.rc)
 endif()
 target_include_directories(Supple-Crystal PUBLIC ./extlibs/SFML-2.5.1/include)
-target_link_libraries(Supple-Crystal sfml-main sfml-graphics sfml-window sfml-system)
+target_link_libraries(Supple-Crystal sfml-main sfml-graphics sfml-window sfml-system stdc++fs)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     make_directory("${CMAKE_BINARY_DIR}/Release/assets")
