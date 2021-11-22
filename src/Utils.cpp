@@ -17,5 +17,6 @@ void preventWindowContentResize(sf::RenderWindow& window, sf::Event resize_event
 bool isSupportedImageType(std::experimental::filesystem::path file)
 {
     std::string extension = file.string().substr(file.string().find_last_of(".")+1,file.string().size());
+    std::transform(extension.begin(), extension.end(), extension.begin(), [](unsigned char c){ return std::tolower((unsigned int) c);});
     return in<std::string>(extension,{"bmp","png","tga","jpg","jpeg","gif","psd","hdr","pic"});
 }
