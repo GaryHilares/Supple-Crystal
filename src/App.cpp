@@ -39,9 +39,11 @@ int App::run(const int argc, char* argv[])
             this->do_exit = true;
             break;
         case ImageViewerStatus::OngoingTask:
+            std::cout << "OngoingTask: Something was not expected to happen" << std::endl;
             throw;
         case ImageViewerStatus::NothingAssigned:
-            throw;
+            viewer.runFastMode();
+            break;
         }
     }
     return this->exit_code;
