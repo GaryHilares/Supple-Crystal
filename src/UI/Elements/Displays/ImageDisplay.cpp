@@ -25,7 +25,7 @@ void ImageDisplay::operator=(const ImageDisplay& other)
     this->sprite.setTexture(this->image,true);
 }
 
-void ImageDisplay::processEvent(sf::Event event) {}
+void ImageDisplay::processEvent(sf::Event) {}
 
 void ImageDisplay::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

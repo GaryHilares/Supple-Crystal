@@ -36,6 +36,7 @@ void ImageViewer::runFastMode()
     sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
     sf::String window_title = sf::String(file_path.wstring().substr(file_path.string().find_last_of("/\\")+1,file_path.string().size())) + " - Supple Crystal: Fast mode";
     sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),window_title);
+    window.setFramerateLimit(60);
     window.setIcon(32,32,icon.getPixelsPtr());
     OS::maximizeWindow(window);
     ContextMenu context_menu({

@@ -37,8 +37,11 @@ int App::run(const int argc, char* argv[])
         case ImageViewerStatus::Error:
             this->exit_code = 1;
             this->do_exit = true;
-        case ImageViewerStatus::OngoingTask:
             break;
+        case ImageViewerStatus::OngoingTask:
+            throw;
+        case ImageViewerStatus::NothingAssigned:
+            throw;
         }
     }
     return this->exit_code;
