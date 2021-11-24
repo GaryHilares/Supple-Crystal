@@ -2,6 +2,10 @@
 #include "../Buttons/Button.hpp"
 #include <memory>
 
+/**
+ * @brief Class for default popup menus.
+ * 
+ */
 class PopupMenu: public UIElement
 {
 private:
@@ -44,9 +48,7 @@ public:
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
-     * @param reference_window Window of reference to process the event. 
      * @param event Event to process.
-     * @warning This method hansn't implemented yet.
      */
     virtual void processEvent(sf::Event event) override;
 

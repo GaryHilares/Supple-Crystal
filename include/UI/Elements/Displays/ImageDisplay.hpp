@@ -2,6 +2,10 @@
 #include "../UIElement.hpp"
 #include <string>
 
+/**
+ * @brief Class for default image displays.
+ * 
+ */
 class ImageDisplay : public UIElement
 {
 private:
@@ -9,21 +13,30 @@ private:
     sf::Sprite sprite;
 
 public:
+    /**
+     * @brief Construct a new empty ImageDisplay object
+     * 
+     */
     ImageDisplay() = default;
 
     /**
-     * @brief Construct a new ImageDisplay object.
+     * @brief Loads an image from a file and constructs a new ImageDisplay object.
      * 
      * @param filename Filename of image to load.
      */
     ImageDisplay(const std::string& filename);
 
+    /**
+     * @brief Copies an ImageDisplay and constructs a new one.
+     * 
+     * @param filename Image display to copy.
+     */
     ImageDisplay(const ImageDisplay& filename);
 
     void operator=(const ImageDisplay& other);
 
     /**
-     * @brief By the time being, does nothing.
+     * @brief Currently, just ignores the event passed.
      * 
      * @param event An event to be ignored.
      */

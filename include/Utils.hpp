@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <experimental/filesystem>
@@ -42,23 +41,37 @@ template <class LoadableObject> LoadableObject loadFromFileWithFallbacks(const s
 }
 
 /**
- * @brief A ciclical std::vector.
+ * @brief A circular doubly linked list.
  * 
- * @tparam T The class to create the CiclicalITerator of.
+ * @tparam T The class to create the CyclicalDoublyLinkedList of.
  */
 template <class T>
-class CiclicalIterator
+class CyclicalDoublyLinkedList
 {
 private:
     std::vector<T> data;
     typename std::vector<T>::size_type index;
 
 public:
-    CiclicalIterator(): data(), index(0) {}
+    /**
+     * @brief Construct a new CyclicalDoublyLinkedList object.
+     * 
+     */
+    CyclicalDoublyLinkedList(): data(), index(0) {}
+    /**
+     * @brief Inserts a new value into the CyclicalDoublyLinkedList.
+     * 
+     * @param val The value to insert.
+     */
     void push(T val)
     {
         data.push_back(val);
     }
+    /**
+     * @brief Moves the index to the next value in the list and returns it.
+     * 
+     * @return T& The next value in the list.
+     */
     T& next()
     {
         if(index == data.size() - 1)
@@ -67,6 +80,11 @@ public:
             index++;
         return data[index];
     }
+    /**
+     * @brief Moves the index to the previous value in the list and returns it.
+     * 
+     * @return T& The previous element in the list.
+     */
     T& prev()
     {
         if(index == 0)
@@ -75,10 +93,20 @@ public:
             index--;
         return data[index];
     }
+    /**
+     * @brief Returns the current value in the list.
+     * 
+     * @return T& The current element in the list.
+     */
     T& cur()
     {
         return data[index];
     }
+    /**
+     * @brief Search a value in the list and sets the index on its position.
+     * 
+     * @param val The value to search.
+     */
     void search(T val)
     {
         auto new_index = std::find(data.begin(),data.end(),val);
@@ -87,10 +115,24 @@ public:
     }
 };
 
+/**
+ * @brief Searchs a value in a list.
+ * 
+ * @tparam T The type of the value to search.
+ * @param x The value to search.
+ * @param c The std::initiliazer_list to look at.
+ * @return bool True if the value is found, false otherwise.
+ */
 template<class T>
 bool in(const T& x, std::initializer_list<T> c)
 {
   return std::find(c.begin(), c.end(), x) != c.end();
 }
 
+/**
+ * @brief Checks if a file is of an image type supported by Supple Crystal.
+ * 
+ * @param file The file to check.
+ * @return bool True if the file is of an image type supported by Supple Crystal.
+ */
 bool isSupportedImageType(std::experimental::filesystem::path file);

@@ -1,8 +1,11 @@
 #pragma once
-#include <string>
 #include <utility>
 #include <experimental/filesystem>
 
+/**
+ * @brief Class that manages the application.
+ * 
+ */
 class App
 {
 private:

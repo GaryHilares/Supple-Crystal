@@ -3,6 +3,10 @@
 #include <functional>
 #include <string>
 
+/**
+ * @brief Class for default popup menu buttons.
+ * 
+ */
 class PopupMenuButton : public Button
 {
 private:
@@ -32,7 +36,6 @@ public:
     /**
      * @brief Processes an event and changes the PopupMenuButton accordingly.
      * 
-     * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
     void processEvent(sf::Event event) override;

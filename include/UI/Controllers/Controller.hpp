@@ -1,7 +1,12 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
 
-class Controller{
+/**
+ * @brief Base pure virtual class for controllers.
+ * 
+ */
+class Controller
+{
 public:
     virtual ~Controller() = default;
 

@@ -3,6 +3,10 @@
 #include <experimental/filesystem>
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief Statuses that the ImageViewer may have.
+ * 
+ */
 enum class ImageViewerStatus{
     NothingAssigned,
     LeftOk,
@@ -12,33 +16,38 @@ enum class ImageViewerStatus{
     OngoingTask
 };
 
+/**
+ * @brief Class which manages the image viewer.
+ * 
+ */
 class ImageViewer
 {
 private:
     const std::experimental::filesystem::path resource_folder;
     ImageViewerStatus status;
     ImageDisplay image_display;
-    CiclicalIterator<std::experimental::filesystem::path> files;
+    CyclicalDoublyLinkedList<std::experimental::filesystem::path> files;
     void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false);
 
 public:
     ImageViewer(const std::experimental::filesystem::path new_resource_folder, const std::experimental::filesystem::path new_file_path);
 
     /**
-     * @brief Runs the App on "Fast mode".
+     * @brief Runs the ImageViewer on "Fast mode".
      * 
-     * @param folder_path The path to the executable.
-     * @param argv The path of the image to open.
      */
     void runFastMode();
 
     /**
-     * @brief Runs the App on "Polished mode".
+     * @brief Runs the ImageViewer on "Polished mode".
      * 
-     * @param folder_path The path to the executable.
-     * @param argv The path of the image to open.
      */
     void runPolishedMode();
 
+    /**
+     * @brief Gets the most recent status of the ImageViewer object.
+     * 
+     * @return ImageViewerStatus The most recent status of the ImageViewer object.
+     */
     ImageViewerStatus getStatus();
 };

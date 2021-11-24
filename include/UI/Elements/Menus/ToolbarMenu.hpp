@@ -3,6 +3,10 @@
 #include "../UIElement.hpp"
 #include <memory>
 
+/**
+ * @brief Class for default toolbar menus.
+ * 
+ */
 class ToolbarMenu: public UIElement
 {
 private:
@@ -10,15 +14,15 @@ private:
     sf::RectangleShape background;
 
     /**
-     * @brief Returns the UIElement subclass object which contacts the coords given.
+     * @brief Returns a pointer to the UIElement subclass object which contains the coords given.
      * 
      * @param pointCoords Coords to look at.
-     * @return UIElement* A pointer to the UIElement which contacts the coord given or nullptr if there is no such UIElement.
+     * @return UIElement* A pointer to the UIElement which contains the coords given or nullptr if there is no such UIElement.
      */
     UIElement* getButtonFromCoords(sf::Vector2f pointCoords);
 public:
     /**
-     * @brief Construct a new PopupMenu object.
+     * @brief Construct a new PopupMenu object with the given buttons.
      * 
      * @param new_buttons Vector of std::shared_ptr<Button> objects to include in the PopupMenu.
      */
@@ -35,7 +39,6 @@ public:
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
-     * @param reference_window Window of reference to process the event. 
      * @param event Event to process.
      * @warning This method hansn't implemented yet.
      */

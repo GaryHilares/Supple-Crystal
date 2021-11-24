@@ -2,6 +2,10 @@
 #include "Button.hpp"
 #include <functional>
 
+/**
+ * @brief Class for default toolbar menu buttons.
+ * 
+ */
 class ToolbarMenuButton: public Button
 {
 private:
@@ -27,7 +31,6 @@ public:
     /**
      * @brief Processes an event and changes the ToolbarMenuButton accordingly.
      * 
-     * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
     void processEvent(sf::Event event) override;

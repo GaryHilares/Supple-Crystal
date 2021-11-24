@@ -4,6 +4,10 @@
 #include "../Elements/Displays/ImageDisplay.hpp"
 #include "Controller.hpp"
 
+/**
+ * @brief Class which controls the sliding and modifies an ImageDisplay based on it.
+ * 
+ */
 class SlideController: public Controller
 {
 private:
