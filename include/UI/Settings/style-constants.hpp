@@ -2,7 +2,7 @@
 #include <SFML/System.hpp>
 
 /**
- * @brief Constants which define the styles.
+ * @brief Constants which define the default styles.
  * 
  */
 namespace Constants

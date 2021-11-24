@@ -1,6 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief Base pure virtual class for UI elements.
+ * 
+ */
 class UIElement: public sf::Drawable, public sf::Transformable
 {
 public:
@@ -9,7 +13,6 @@ public:
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
-     * @param reference_window Window of reference to process the event.
      * @param event Event to process.
      */
     virtual void processEvent(sf::Event event) = 0;

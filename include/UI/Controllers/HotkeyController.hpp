@@ -4,6 +4,10 @@
 #include <unordered_map>
 #include "Controller.hpp"
 
+/**
+ * @brief Class which controls hotkeys.
+ * 
+ */
 class HotkeysController: public Controller
 {
 private:

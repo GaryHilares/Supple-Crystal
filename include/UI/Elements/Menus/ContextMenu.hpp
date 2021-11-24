@@ -1,6 +1,10 @@
 #pragma once
 #include "PopupMenu.hpp"
 
+/**
+ * @brief Class for default context menus.
+ * 
+ */
 class ContextMenu: public PopupMenu
 {
 public:
@@ -15,4 +19,3 @@ public:
      */
     void processEvent(sf::Event mouse_event) override;
 };
-
