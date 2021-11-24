@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <experimental/filesystem>
