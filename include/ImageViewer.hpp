@@ -26,7 +26,7 @@ private:
     const std::experimental::filesystem::path resource_folder;
     ImageViewerStatus status;
     ImageDisplay image_display;
-    CiclicalDoublyLinkedList<std::experimental::filesystem::path> files;
+    CyclicalDoublyLinkedList<std::experimental::filesystem::path> files;
     void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false);
 
 public:

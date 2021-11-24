@@ -43,10 +43,10 @@ template <class LoadableObject> LoadableObject loadFromFileWithFallbacks(const s
 /**
  * @brief A circular doubly linked list.
  * 
- * @tparam T The class to create the CiclicalDoublyLinkedList of.
+ * @tparam T The class to create the CyclicalDoublyLinkedList of.
  */
 template <class T>
-class CiclicalDoublyLinkedList
+class CyclicalDoublyLinkedList
 {
 private:
     std::vector<T> data;
@@ -54,12 +54,12 @@ private:
 
 public:
     /**
-     * @brief Construct a new CiclicalDoublyLinkedList object.
+     * @brief Construct a new CyclicalDoublyLinkedList object.
      * 
      */
-    CiclicalDoublyLinkedList(): data(), index(0) {}
+    CyclicalDoublyLinkedList(): data(), index(0) {}
     /**
-     * @brief Inserts a new value into the CiclicalDoublyLinkedList.
+     * @brief Inserts a new value into the CyclicalDoublyLinkedList.
      * 
      * @param val The value to insert.
      */
