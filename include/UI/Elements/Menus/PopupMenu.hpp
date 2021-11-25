@@ -11,6 +11,7 @@ class PopupMenu: public UIElement
 private:
     std::vector<std::shared_ptr<Button>> buttons;
     bool do_display;
+    sf::RectangleShape border;
 
     /**
      * @brief Returns the UIElement subclass object which contacts the coords given.
