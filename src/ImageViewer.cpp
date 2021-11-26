@@ -40,46 +40,45 @@ void ImageViewer::runFastMode()
     window.setFramerateLimit(60);
     window.setIcon(32,32,icon.getPixelsPtr());
     OS::maximizeWindow(window);
+    auto run_polished_mode = [&](){this->status = ImageViewerStatus::RunPolishedMode;};
+    auto rotate_image_to_the_right = [&](){
+        this->image_display.rotate(90);
+    };
+    auto rotate_image_to_the_left = [&](){
+        this->image_display.rotate(-90);
+    };
+    auto zoom_image = [&](){this->image_display.scale({1.1,1.1});};
+    auto unzoom_image = [&](){this->image_display.scale({0.8,0.8});};
+    auto set_next_image = [&](){
+        this->openImageFromPath(this->files.next());
+        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
+        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
+        window.setTitle(window_title);
+        std::cout << this->files.cur().string() << std::endl;
+    };
+    const auto set_previous_image = [&](){
+        this->openImageFromPath(this->files.prev());
+        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
+        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
+        window.setTitle(window_title);
+        std::cout << this->files.cur().string() << std::endl;
+    };
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,[&](){this->status = ImageViewerStatus::RunPolishedMode;})),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,[&](){this->image_display.rotate(-90);})),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,[&](){this->image_display.rotate(90);})),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,[&](){this->image_display.scale({1.15,1.15});})),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,[&](){this->image_display.scale({0.85,0.85});})),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,[&](){
-                                    this->openImageFromPath(this->files.next());
-                                    const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-                                    sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-                                    window.setTitle(window_title);
-                                    std::cout << this->files.cur().string() << std::endl;
-                                })),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,[&](){
-                                    this->openImageFromPath(this->files.prev());
-                                    const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-                                    sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-                                    window.setTitle(window_title);
-                                    std::cout << this->files.cur().string() << std::endl;
-                                }))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,run_polished_mode)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,unzoom_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,set_next_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,set_previous_image))
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,[&](){this->image_display.scale(1.1,1.1);}},
-                                            {sf::Keyboard::Subtract,[&](){this->image_display.scale(0.8,0.8);}},
-                                            {sf::Keyboard::Left,[&](){this->image_display.rotate(90);}},
-                                            {sf::Keyboard::Right,[&](){this->image_display.rotate(-90);}},
-                                            {sf::Keyboard::Up,[&](){
-                                                this->openImageFromPath(this->files.next());
-                                                const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-                                                sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-                                                window.setTitle(window_title);
-                                                std::cout << this->files.cur().string() << std::endl;
-                                            }},
-                                            {sf::Keyboard::Down,[&](){
-                                                this->openImageFromPath(this->files.prev());
-                                                const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-                                                sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-                                                window.setTitle(window_title);
-                                                std::cout << this->files.cur().string() << std::endl;
-                                            }}
+                                            {sf::Keyboard::Add,zoom_image},
+                                            {sf::Keyboard::Subtract,unzoom_image},
+                                            {sf::Keyboard::Left,rotate_image_to_the_left},
+                                            {sf::Keyboard::Right,rotate_image_to_the_right},
+                                            {sf::Keyboard::Up,set_next_image},
+                                            {sf::Keyboard::Down,set_previous_image}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
