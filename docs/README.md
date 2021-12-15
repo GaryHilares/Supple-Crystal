@@ -36,7 +36,9 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 - Cross-platform.
 
 ### Dependencies
+#### Dev
 - SFML.
+- CMake.
 
 ## Motivation
 Too often, I have trouble opening images. When I'm in a hurry, I want to open an image as fast as possible to check. Nonetheless, when I'm not in a hurry but inspecting an image, I would prefer having many features that helps me viewing the details. As a consequence, I have 2 image viewers. However, this is also a problem, because it's hard managing both - sometimes I open the advanced one when I'm in a hurry and my computer lags - and it causes a lot of desorganization.
