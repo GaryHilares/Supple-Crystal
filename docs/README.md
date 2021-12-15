@@ -36,7 +36,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 - Cross-platform.
 
 ### Dependencies
-#### Dev
+#### Development
 - SFML.
 - CMake.
 
