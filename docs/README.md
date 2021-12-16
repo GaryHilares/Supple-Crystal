@@ -112,7 +112,10 @@ Once you have it, you can start using it:
 All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/LICENSE).
 
 Third party code and resources in this repository are under their own licenses:
-- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) is under the [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
+- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) by Pablo Impallari and Rodrigo Fuenzalida (Modified by Dan O. Williams and USWDS) is under the [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
+- [Icons by Cole Bemis](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Cole%20Bemis) by Cole Bemis is under the [Attribution 4.0 International (CC BY 4.0) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Cole%Bemis/LICENSE).
+- [Icons by Kmg Design](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Kmg%20Design) by Kmg Design is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Kmg%Design/LICENSE).
+- [Icons by Steve Schoger](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Steve%20Schoger) by Steve Schoger is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Steve%Schoger/LICENSE).
 
 
 ## Contributors
