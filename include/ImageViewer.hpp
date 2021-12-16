@@ -30,6 +30,12 @@ private:
     void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false);
 
 public:
+    /**
+     * @brief Construct a new ImageViewer object.
+     * 
+     * @param new_resource_folder Folder where assets and other resources are stored.
+     * @param new_file_path File to open in the image viewer.
+     */
     ImageViewer(const std::experimental::filesystem::path new_resource_folder, const std::experimental::filesystem::path new_file_path);
 
     /**
