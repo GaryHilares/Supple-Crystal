@@ -3,6 +3,7 @@
 #include "../include/UI/Controllers/SlideController.hpp"
 #include "../include/UI/Elements/Buttons/PopupMenuButton.hpp"
 #include "../include/UI/Elements/Menus/ContextMenu.hpp"
+#include "../include/UI/Elements/Menus/ToolbarMenu.hpp"
 #include "../include/UI/Settings/style-constants.hpp"
 #include "../include/OSUtils.hpp"
 #include "../include/Utils.hpp"
@@ -134,31 +135,40 @@ void ImageViewer::runPolishedMode()
     window.setFramerateLimit(60);
     window.setIcon(32,32,icon.getPixelsPtr());
     OS::maximizeWindow(window);
-    auto run_polished_mode = [&](){this->status = ImageViewerStatus::RunPolishedMode;};
+    const auto run_polished_mode = [&](){this->status = ImageViewerStatus::RunFastMode;};
     auto rotate_image_to_the_right = [&](){
         this->image_display.rotate(90);
     };
-    auto rotate_image_to_the_left = [&](){
+    const auto rotate_image_to_the_left = [&](){
         this->image_display.rotate(-90);
     };
-    auto zoom_image = [&](){this->image_display.scale({1.1,1.1});};
-    auto unzoom_image = [&](){this->image_display.scale({0.8,0.8});};
-    auto set_next_image = [&](){
+    const auto zoom_image = [&](){this->image_display.scale({1.1,1.1});};
+    const auto unzoom_image = [&](){this->image_display.scale({0.8,0.8});};
+    const auto set_next_image = [&](){
         this->openImageFromPath(this->files.next());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
+        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Polished mode";
         sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
         window.setTitle(window_title);
         std::cout << this->files.cur().string() << std::endl;
     };
     const auto set_previous_image = [&](){
         this->openImageFromPath(this->files.prev());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
+        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Polished mode";
         sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
         window.setTitle(window_title);
         std::cout << this->files.cur().string() << std::endl;
     };
+    ToolbarMenu toolbar_menu({
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,run_polished_mode)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,unzoom_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,set_next_image)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,set_previous_image))
+                            });
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,run_polished_mode)),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,run_polished_mode)),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
@@ -200,6 +210,7 @@ void ImageViewer::runPolishedMode()
                 break;
             case sf::Event::MouseButtonReleased:
                 context_menu.processEvent(event);
+                toolbar_menu.processEvent(event);
                 break;
             case sf::Event::KeyReleased:
                 hotkeys_controller.checkForUpdates(event);
@@ -212,6 +223,7 @@ void ImageViewer::runPolishedMode()
         window.clear(sf::Color(Constants::background_color));
         window.draw(this->image_display);
         window.draw(context_menu);
+        window.draw(toolbar_menu);
         window.display();
     }
 }
