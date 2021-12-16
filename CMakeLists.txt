@@ -1,12 +1,15 @@
+# Project settings
 cmake_minimum_required(VERSION 3.0.0)
 project(Supple-Crystal VERSION 0.1.0)
 
 include(CTest)
 enable_testing()
 
+# Build settings
 set(CMAKE_BUILD_TYPE "Debug")
-set(CMAKE_CXX_STANDARD 17)
 
+# Build process
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
