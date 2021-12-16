@@ -40,7 +40,6 @@ public:
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 
      * @param event Event to process.
-     * @warning This method hansn't implemented yet.
      */
     virtual void processEvent(sf::Event event) override;
 
