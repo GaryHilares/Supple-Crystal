@@ -26,18 +26,18 @@ enum class ImageViewerStatus{
 class ImageViewer
 {
 private:
-    sf::RenderWindow window; // display
     ImageViewerStatus status; // controller
+    sf::RenderWindow window; // display
     ImageDisplay image_display; // display
     CyclicalDoublyLinkedList<std::experimental::filesystem::path> files; // files
 
     ResourceLoader<sf::Font,sf::Image> resource_loader; // display
     const std::unordered_map<std::string,std::function<void()>> functionalities; // controller
-    void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false); // controller
-    static std::string formatWindowTitle(const std::experimental::filesystem::path& file_ath, std::string mode); // controller
+    void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false); // files, controller & display
+    static std::string formatWindowTitle(const std::experimental::filesystem::path& file_path, std::string mode); // display
+    void updateWindowTitle(std::string mode); // files
 
 public:
-    void updateWindowTitle(std::string mode);
 
     /**
      * @brief Construct a new ImageViewer object.

@@ -9,8 +9,8 @@
 #include "../include/Utils.hpp"
 
 ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_folder, const std::experimental::filesystem::path new_file_path):
-    window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),""),
     status(ImageViewerStatus::NothingAssigned),
+    window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),""),
     resource_loader({resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"}),
     functionalities({
         {"run_fast_mode",[this](){this->status = ImageViewerStatus::RunFastMode;}},
