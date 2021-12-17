@@ -9,10 +9,35 @@
 #include "../include/Utils.hpp"
 #include <iostream>
 
-ImageViewer::ImageViewer(const std::experimental::filesystem::path new_resource_folder, const std::experimental::filesystem::path new_file_path):
-    resource_folder(new_resource_folder), status(ImageViewerStatus::NothingAssigned)
+ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_folder, const std::experimental::filesystem::path new_file_path):
+    window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),""),
+    status(ImageViewerStatus::NothingAssigned),
+    search_directories({resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"}),
+    font(loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",search_directories)),
+    icon(loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",search_directories)),
+    functionalities({
+        {"run_fast_mode",[this](){this->status = ImageViewerStatus::RunFastMode;}},
+        {"run_polished_mode",[this](){this->status = ImageViewerStatus::RunPolishedMode;}},
+        {"rotate_image_to_the_right",[this](){this->image_display.rotate(90);}},
+        {"rotate_image_to_the_left",[this](){this->image_display.rotate(-90);}},
+        {"zoom_image",[this](){this->image_display.scale({1.1,1.1});}},
+        {"unzoom_image",[this](){this->image_display.scale({0.8,0.8});}},
+        {"set_next_image",[this](){
+            this->openImageFromPath(this->files.next());
+            this->updateWindowTitle("Fast");
+            std::cout << this->files.cur().string() << std::endl;
+        }},
+        {"set_previous_image",[this](){
+            this->openImageFromPath(this->files.prev());
+            this->updateWindowTitle("Fast");
+            std::cout << this->files.cur().string() << std::endl;
+        }}
+    })
 {
     this->openImageFromPath(new_file_path,true);
+    this->window.setFramerateLimit(60);
+    OS::maximizeWindow(this->window);
+    this->window.setIcon(32,32,icon.getPixelsPtr());
 }
 
 void ImageViewer::openImageFromPath(const std::experimental::filesystem::path& new_file_path, bool open_folder)
@@ -29,57 +54,31 @@ void ImageViewer::openImageFromPath(const std::experimental::filesystem::path& n
     }
 }
 
+std::string ImageViewer::formatWindowTitle(const std::experimental::filesystem::path& file_path, std::string mode)
+{
+    return file_path.filename().u8string() + " - Supple Crystal: " + mode + " mode";
+}
+
 void ImageViewer::runFastMode()
 {
     this->status = ImageViewerStatus::OngoingTask;
-    const std::experimental::filesystem::path file_path = this->files.cur();
-    sf::Font font = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{this->resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{this->resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    const std::string& starting_window_title_utf8 = file_path.u8string().substr(file_path.u8string().find_last_of("/\\")+1,file_path.u8string().size()) + " - Supple Crystal: Fast mode";
-    sf::String starting_window_title = sf::String::fromUtf8(starting_window_title_utf8.begin(),starting_window_title_utf8.end());
-    sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),starting_window_title);
-    window.setFramerateLimit(60);
-    window.setIcon(32,32,icon.getPixelsPtr());
-    OS::maximizeWindow(window);
-    auto run_polished_mode = [&](){this->status = ImageViewerStatus::RunPolishedMode;};
-    auto rotate_image_to_the_right = [&](){
-        this->image_display.rotate(90);
-    };
-    auto rotate_image_to_the_left = [&](){
-        this->image_display.rotate(-90);
-    };
-    auto zoom_image = [&](){this->image_display.scale({1.1,1.1});};
-    auto unzoom_image = [&](){this->image_display.scale({0.8,0.8});};
-    auto set_next_image = [&](){
-        this->openImageFromPath(this->files.next());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-        window.setTitle(window_title);
-        std::cout << this->files.cur().string() << std::endl;
-    };
-    const auto set_previous_image = [&](){
-        this->openImageFromPath(this->files.prev());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Fast mode";
-        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-        window.setTitle(window_title);
-        std::cout << this->files.cur().string() << std::endl;
-    };
+    this->updateWindowTitle("Fast");    
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,run_polished_mode)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,unzoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,set_next_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,set_previous_image))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,this->functionalities["run_polished_mode"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,zoom_image},
-                                            {sf::Keyboard::Subtract,unzoom_image},
-                                            {sf::Keyboard::Left,rotate_image_to_the_left},
-                                            {sf::Keyboard::Right,rotate_image_to_the_right},
-                                            {sf::Keyboard::Up,set_next_image},
-                                            {sf::Keyboard::Down,set_previous_image}
+                                            {sf::Keyboard::Add,this->functionalities["zoom_image"]},
+                                            {sf::Keyboard::Subtract,this->functionalities["unzoom_image"]},
+                                            {sf::Keyboard::Left,this->functionalities["rotate_image_to_the_left"]},
+                                            {sf::Keyboard::Right,this->functionalities["rotate_image_to_the_right"]},
+                                            {sf::Keyboard::Up,this->functionalities["set_next_image"]},
+                                            {sf::Keyboard::Down,this->functionalities["set_previous_image"]}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
@@ -123,66 +122,41 @@ void ImageViewer::runFastMode()
     }
 }
 
+void ImageViewer::updateWindowTitle(std::string mode){
+    const std::string window_title_utf8 = ImageViewer::formatWindowTitle(this->files.cur(),mode);
+    const sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
+    this->window.setTitle(window_title);
+}
+
 void ImageViewer::runPolishedMode()
 {
     this->status = ImageViewerStatus::OngoingTask;
-    const std::experimental::filesystem::path file_path = this->files.cur();
-    sf::Font font = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",{this->resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    sf::Image icon = loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",{this->resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"});
-    const std::string& starting_window_title_utf8 = file_path.u8string().substr(file_path.u8string().find_last_of("/\\")+1,file_path.u8string().size()) + " - Supple Crystal: Polished mode";
-    sf::String starting_window_title = sf::String::fromUtf8(starting_window_title_utf8.begin(),starting_window_title_utf8.end());
-    sf::RenderWindow window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),starting_window_title);
-    window.setFramerateLimit(60);
-    window.setIcon(32,32,icon.getPixelsPtr());
-    OS::maximizeWindow(window);
-    const auto run_polished_mode = [&](){this->status = ImageViewerStatus::RunFastMode;};
-    auto rotate_image_to_the_right = [&](){
-        this->image_display.rotate(90);
-    };
-    const auto rotate_image_to_the_left = [&](){
-        this->image_display.rotate(-90);
-    };
-    const auto zoom_image = [&](){this->image_display.scale({1.1,1.1});};
-    const auto unzoom_image = [&](){this->image_display.scale({0.8,0.8});};
-    const auto set_next_image = [&](){
-        this->openImageFromPath(this->files.next());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Polished mode";
-        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-        window.setTitle(window_title);
-        std::cout << this->files.cur().string() << std::endl;
-    };
-    const auto set_previous_image = [&](){
-        this->openImageFromPath(this->files.prev());
-        const std::string& window_title_utf8 = this->files.cur().u8string().substr(this->files.cur().u8string().find_last_of("/\\")+1,this->files.cur().u8string().size()) + " - Supple Crystal: Polished mode";
-        sf::String window_title = sf::String::fromUtf8(window_title_utf8.begin(),window_title_utf8.end());
-        window.setTitle(window_title);
-        std::cout << this->files.cur().string() << std::endl;
-    };
+    this->updateWindowTitle("Polished");
     ToolbarMenu toolbar_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,run_polished_mode)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,unzoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,set_next_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,set_previous_image))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,this->functionalities["run_fast_mode"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
                             });
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,run_polished_mode)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,rotate_image_to_the_left)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,rotate_image_to_the_right)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,zoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,unzoom_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,set_next_image)),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,set_previous_image))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,this->functionalities["run_fast_mode"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,zoom_image},
-                                            {sf::Keyboard::Subtract,unzoom_image},
-                                            {sf::Keyboard::Left,rotate_image_to_the_left},
-                                            {sf::Keyboard::Right,rotate_image_to_the_right},
-                                            {sf::Keyboard::Up,set_next_image},
-                                            {sf::Keyboard::Down,set_previous_image}
+                                            {sf::Keyboard::Add,this->functionalities["zoom_image"]},
+                                            {sf::Keyboard::Subtract,this->functionalities["unzoom_image"]},
+                                            {sf::Keyboard::Left,this->functionalities["rotate_image_to_the_left"]},
+                                            {sf::Keyboard::Right,this->functionalities["rotate_image_to_the_right"]},
+                                            {sf::Keyboard::Up,this->functionalities["set_next_image"]},
+                                            {sf::Keyboard::Down,this->functionalities["set_previous_image"]}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
