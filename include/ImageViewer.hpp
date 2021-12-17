@@ -1,6 +1,6 @@
 #include "../include/UI/Elements/Displays/ImageDisplay.hpp"
 #include "ResourceLoader.hpp"
-#include "Utils.hpp"
+#include "Utils/CyclicalDoublyLinkedList.hpp"
 #include <experimental/filesystem>
 #include <functional>
 #include <optional>
@@ -38,6 +38,7 @@ private:
     const std::unordered_map<std::string,std::function<void()>> functionalities;
     void openImageFromPath(const std::experimental::filesystem::path& filename);
     static std::string formatWindowTitle(const std::experimental::filesystem::path& file_path, const std::string mode);
+    static bool isSupportedImageType(std::experimental::filesystem::path file);
     void updateWindowTitle(std::experimental::filesystem::path new_file_path);
 
 public:

@@ -5,8 +5,8 @@
 #include "../include/UI/Elements/Menus/ContextMenu.hpp"
 #include "../include/UI/Elements/Menus/ToolbarMenu.hpp"
 #include "../include/UI/Settings/style-constants.hpp"
-#include "../include/OSUtils.hpp"
-#include "../include/Utils.hpp"
+#include "../include/Utils/WindowOps.hpp"
+#include "../include/Utils/ListOps.hpp"
 
 ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_folder):
     status(ImageViewerStatus::NothingAssigned),
@@ -205,4 +205,11 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
 ImageViewerStatus ImageViewer::getStatus()
 {
     return this->status;
+}
+
+bool ImageViewer::isSupportedImageType(std::experimental::filesystem::path file)
+{
+    std::string extension = file.string().substr(file.string().find_last_of(".")+1,file.string().size());
+    std::transform(extension.begin(), extension.end(), extension.begin(), [](unsigned char c){ return std::tolower((unsigned int) c);});
+    return in<std::string>(extension,{"bmp","png","tga","jpg","jpeg","jfif","gif","psd","hdr","pic"});
 }
