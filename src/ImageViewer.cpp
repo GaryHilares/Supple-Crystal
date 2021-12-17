@@ -138,7 +138,7 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("unzoom_image"))),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image")))
-                            });
+                            },this->window.getSize().x);
     ContextMenu context_menu({
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",resource_loader.get<sf::Font>("font"),this->functionalities.at("run_fast_mode"))),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_left"))),
@@ -179,6 +179,7 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                 break;
             case sf::Event::Resized:
                 preventWindowContentResize(window,event);
+                toolbar_menu.setWidth(event.size.width);
                 break;
             case sf::Event::MouseButtonReleased:
                 context_menu.processEvent(event);

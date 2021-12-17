@@ -24,7 +24,7 @@ namespace Constants
     }
     namespace ToolbarMenu
     {
-        constexpr sf::Uint32 Color = 0xff0000ff;
+        constexpr sf::Uint32 Color = 0xffffffff;
         namespace Button
         {
             constexpr int Width = 150;

@@ -5,13 +5,14 @@
 
 /**
  * @brief Class for default toolbar menus.
- * 
+ *
  */
 class ToolbarMenu: public UIElement
 {
 private:
     std::vector<std::shared_ptr<Button>> buttons;
     sf::RectangleShape background;
+    sf::Vector2i dimensions;
 
     /**
      * @brief Returns a pointer to the UIElement subclass object which contains the coords given.
@@ -26,7 +27,7 @@ public:
      * 
      * @param new_buttons Vector of std::shared_ptr<Button> objects to include in the PopupMenu.
      */
-    ToolbarMenu(const std::vector<std::shared_ptr<Button>>& new_buttons);
+    ToolbarMenu(const std::vector<std::shared_ptr<Button>>& new_buttons, int new_width);
 
     /**
      * @brief Draws the PopupMenu.
@@ -50,4 +51,6 @@ public:
      * @return bool True if point is in the bounds of the object, false otherwise.
      */
     bool containsPoint(sf::Vector2f pointCoords);
+
+    void setWidth(int new_width);
 };
