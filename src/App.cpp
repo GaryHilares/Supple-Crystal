@@ -19,17 +19,17 @@ int App::run(const int argc, char* argv[])
 {
     std::pair<std::experimental::filesystem::path,std::experimental::filesystem::path> arguments = this->parseArguments(argc,argv);
     const std::experimental::filesystem::path resource_folder = arguments.first;
-    const std::experimental::filesystem::path file_path = arguments.second;
-    ImageViewer viewer(resource_folder,file_path);
+    std::experimental::filesystem::path file_path = arguments.second;
+    ImageViewer viewer(resource_folder);
     while(!do_exit)
     {
         switch(viewer.getStatus())
         {
         case ImageViewerStatus::RunFastMode:
-            viewer.runFastMode();
+            file_path = viewer.runFastMode(file_path).second;
             break;
         case ImageViewerStatus::RunPolishedMode:
-            viewer.runPolishedMode();
+            file_path = viewer.runPolishedMode(file_path).second;
             break;
         case ImageViewerStatus::LeftOk:
             this->do_exit = true;
@@ -42,7 +42,7 @@ int App::run(const int argc, char* argv[])
             std::cout << "OngoingTask: Something was not expected to happen" << std::endl;
             throw;
         case ImageViewerStatus::NothingAssigned:
-            viewer.runFastMode();
+            file_path = viewer.runFastMode(file_path).second;
             break;
         }
     }
