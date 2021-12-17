@@ -1,8 +1,9 @@
 #include "../include/UI/Elements/Displays/ImageDisplay.hpp"
+#include "ResourceLoader.hpp"
 #include "Utils.hpp"
-#include <unordered_map>
-#include <functional>
 #include <experimental/filesystem>
+#include <functional>
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
 
 /**
@@ -29,11 +30,9 @@ private:
     ImageViewerStatus status; // controller
     ImageDisplay image_display; // display
     CyclicalDoublyLinkedList<std::experimental::filesystem::path> files; // files
-    const std::vector<std::string> search_directories; // display
-    const sf::Font font; // display
-    const sf::Image icon; // display
-    /* const */ std::unordered_map<std::string,std::function<void()>> functionalities; // controller
-    
+
+    ResourceLoader<sf::Font,sf::Image> resource_loader; // display
+    const std::unordered_map<std::string,std::function<void()>> functionalities; // controller
     void openImageFromPath(const std::experimental::filesystem::path& filename, bool open_folder = false); // controller
     static std::string formatWindowTitle(const std::experimental::filesystem::path& file_ath, std::string mode); // controller
 

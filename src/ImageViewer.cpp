@@ -12,9 +12,7 @@
 ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_folder, const std::experimental::filesystem::path new_file_path):
     window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),""),
     status(ImageViewerStatus::NothingAssigned),
-    search_directories({resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"}),
-    font(loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf",search_directories)),
-    icon(loadFromFileWithFallbacks<sf::Image>("assets/logo_bg-true_resized.png",search_directories)),
+    resource_loader({resource_folder.string() + "/","","C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/"}),
     functionalities({
         {"run_fast_mode",[this](){this->status = ImageViewerStatus::RunFastMode;}},
         {"run_polished_mode",[this](){this->status = ImageViewerStatus::RunPolishedMode;}},
@@ -37,7 +35,9 @@ ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_fold
     this->openImageFromPath(new_file_path,true);
     this->window.setFramerateLimit(60);
     OS::maximizeWindow(this->window);
-    this->window.setIcon(32,32,icon.getPixelsPtr());
+    resource_loader.load<sf::Image>("icon");
+    this->window.setIcon(32,32,resource_loader.get<sf::Image>("icon").getPixelsPtr());
+    resource_loader.load<sf::Font>("font");
 }
 
 void ImageViewer::openImageFromPath(const std::experimental::filesystem::path& new_file_path, bool open_folder)
@@ -62,23 +62,23 @@ std::string ImageViewer::formatWindowTitle(const std::experimental::filesystem::
 void ImageViewer::runFastMode()
 {
     this->status = ImageViewerStatus::OngoingTask;
-    this->updateWindowTitle("Fast");    
+    this->updateWindowTitle("Fast");
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",font,this->functionalities["run_polished_mode"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Polished Mode",resource_loader.get<sf::Font>("font"),this->functionalities.at("run_polished_mode"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_left"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_right"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("zoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("unzoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image")))
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,this->functionalities["zoom_image"]},
-                                            {sf::Keyboard::Subtract,this->functionalities["unzoom_image"]},
-                                            {sf::Keyboard::Left,this->functionalities["rotate_image_to_the_left"]},
-                                            {sf::Keyboard::Right,this->functionalities["rotate_image_to_the_right"]},
-                                            {sf::Keyboard::Up,this->functionalities["set_next_image"]},
-                                            {sf::Keyboard::Down,this->functionalities["set_previous_image"]}
+                                            {sf::Keyboard::Add,this->functionalities.at("zoom_image")},
+                                            {sf::Keyboard::Subtract,this->functionalities.at("unzoom_image")},
+                                            {sf::Keyboard::Left,this->functionalities.at("rotate_image_to_the_left")},
+                                            {sf::Keyboard::Right,this->functionalities.at("rotate_image_to_the_right")},
+                                            {sf::Keyboard::Up,this->functionalities.at("set_next_image")},
+                                            {sf::Keyboard::Down,this->functionalities.at("set_previous_image")}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
@@ -133,30 +133,30 @@ void ImageViewer::runPolishedMode()
     this->status = ImageViewerStatus::OngoingTask;
     this->updateWindowTitle("Polished");
     ToolbarMenu toolbar_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,this->functionalities["run_fast_mode"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",resource_loader.get<sf::Font>("font"),this->functionalities.at("run_fast_mode"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_left"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_right"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("zoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("unzoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image")))
                             });
     ContextMenu context_menu({
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",font,this->functionalities["run_fast_mode"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",font,this->functionalities["rotate_image_to_the_left"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",font,this->functionalities["rotate_image_to_the_right"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",font,this->functionalities["zoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",font,this->functionalities["unzoom_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",font,this->functionalities["set_next_image"])),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",font,this->functionalities["set_previous_image"]))
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Fast Mode",resource_loader.get<sf::Font>("font"),this->functionalities.at("run_fast_mode"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate left",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_left"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_right"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("zoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("unzoom_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image")))
                            });
     HotkeysController hotkeys_controller({
-                                            {sf::Keyboard::Add,this->functionalities["zoom_image"]},
-                                            {sf::Keyboard::Subtract,this->functionalities["unzoom_image"]},
-                                            {sf::Keyboard::Left,this->functionalities["rotate_image_to_the_left"]},
-                                            {sf::Keyboard::Right,this->functionalities["rotate_image_to_the_right"]},
-                                            {sf::Keyboard::Up,this->functionalities["set_next_image"]},
-                                            {sf::Keyboard::Down,this->functionalities["set_previous_image"]}
+                                            {sf::Keyboard::Add,this->functionalities.at("zoom_image")},
+                                            {sf::Keyboard::Subtract,this->functionalities.at("unzoom_image")},
+                                            {sf::Keyboard::Left,this->functionalities.at("rotate_image_to_the_left")},
+                                            {sf::Keyboard::Right,this->functionalities.at("rotate_image_to_the_right")},
+                                            {sf::Keyboard::Up,this->functionalities.at("set_next_image")},
+                                            {sf::Keyboard::Down,this->functionalities.at("set_previous_image")}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
