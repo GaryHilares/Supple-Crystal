@@ -111,7 +111,6 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                 break;
             }
         }
-        /* Display */
         window.clear(sf::Color(Constants::background_color));
         window.draw(this->image_display);
         window.draw(context_menu);
@@ -192,7 +191,6 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                 break;
             }
         }
-        /* Display */
         window.clear(sf::Color(Constants::background_color));
         window.draw(this->image_display);
         window.draw(context_menu);
