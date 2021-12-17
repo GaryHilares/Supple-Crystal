@@ -20,10 +20,10 @@ ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_fold
         {"zoom_image",[this](){this->image_display.scale({1.1,1.1});}},
         {"unzoom_image",[this](){this->image_display.scale({0.8,0.8});}},
         {"set_next_image",[this](){
-            this->openImageFromPath(this->files.next()); // both
+            this->openImageFromPath(this->files.next());
         }},
         {"set_previous_image",[this](){
-            this->openImageFromPath(this->files.prev()); // both
+            this->openImageFromPath(this->files.prev());
         }}
     })
 {
@@ -66,16 +66,16 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Rotate right",resource_loader.get<sf::Font>("font"),this->functionalities.at("rotate_image_to_the_right"))),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Increase zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("zoom_image"))),
                                 std::make_shared<PopupMenuButton>(PopupMenuButton("Decrease zoom",resource_loader.get<sf::Font>("font"),this->functionalities.at("unzoom_image"))),
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))), // both
-                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image"))) // both
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Next image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_next_image"))),
+                                std::make_shared<PopupMenuButton>(PopupMenuButton("Previous image",resource_loader.get<sf::Font>("font"),this->functionalities.at("set_previous_image")))
                            });
     HotkeysController hotkeys_controller({
                                             {sf::Keyboard::Add,this->functionalities.at("zoom_image")},
                                             {sf::Keyboard::Subtract,this->functionalities.at("unzoom_image")},
                                             {sf::Keyboard::Left,this->functionalities.at("rotate_image_to_the_left")},
                                             {sf::Keyboard::Right,this->functionalities.at("rotate_image_to_the_right")},
-                                            {sf::Keyboard::Up,this->functionalities.at("set_next_image")}, // both
-                                            {sf::Keyboard::Down,this->functionalities.at("set_previous_image")} // both
+                                            {sf::Keyboard::Up,this->functionalities.at("set_next_image")},
+                                            {sf::Keyboard::Down,this->functionalities.at("set_previous_image")}
                                          });
     SlideController slide_controller(this->image_display);
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
