@@ -60,4 +60,6 @@ public:
      * @return bool True if point is in the bounds of the object, false otherwise.
      */
     bool containsPoint(sf::Vector2f pointCoords);
+
+    sf::Vector2u getSize() const override;
 };

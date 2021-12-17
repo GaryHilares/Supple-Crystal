@@ -39,4 +39,6 @@ public:
      * @param event Event to process.
      */
     void processEvent(sf::Event event) override;
+
+    sf::Vector2u getSize() const override;
 };

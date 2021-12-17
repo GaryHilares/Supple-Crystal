@@ -37,7 +37,7 @@ ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_fold
 void ImageViewer::openImageFromPath(const std::experimental::filesystem::path& new_file_path)
 {
     this->image_display = ImageDisplay(new_file_path.u8string());
-    this->image_display.setOrigin(image_display.getDimensions().x/2,image_display.getDimensions().y/2);
+    this->image_display.setOrigin(image_display.getSize().x/2,image_display.getSize().y/2);
     this->image_display.setPosition(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2);
     this->updateWindowTitle(new_file_path);
     if(!this->loadedFolder.has_value() || this->loadedFolder != new_file_path.parent_path())
@@ -157,6 +157,7 @@ std::pair<ImageViewerStatus,std::experimental::filesystem::path> ImageViewer::ru
                                             {sf::Keyboard::Down,this->functionalities.at("set_previous_image")}
                                          });
     SlideController slide_controller(this->image_display);
+    sf::Texture texture;
     while(this->status == ImageViewerStatus::OngoingTask && window.isOpen())
     {
         sf::Event event;

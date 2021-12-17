@@ -33,8 +33,7 @@ void ImageDisplay::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(this->sprite,states);
 }
 
-sf::Vector2f ImageDisplay::getDimensions()
+sf::Vector2u ImageDisplay::getSize() const
 {
-    const sf::FloatRect& globalBounds = this->sprite.getLocalBounds();
-    return sf::Vector2f(globalBounds.width,globalBounds.height);
+    return this->sprite.getTexture()->getSize();
 }

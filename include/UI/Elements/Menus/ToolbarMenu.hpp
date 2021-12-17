@@ -12,7 +12,7 @@ class ToolbarMenu: public UIElement
 private:
     std::vector<std::shared_ptr<Button>> buttons;
     sf::RectangleShape background;
-    sf::Vector2i dimensions;
+    sf::Vector2u size;
 
     /**
      * @brief Returns a pointer to the UIElement subclass object which contains the coords given.
@@ -52,5 +52,7 @@ public:
      */
     bool containsPoint(sf::Vector2f pointCoords);
 
-    void setWidth(int new_width);
+    void setWidth(unsigned int new_width);
+
+    sf::Vector2u getSize() const override;
 };

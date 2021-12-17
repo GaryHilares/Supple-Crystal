@@ -10,6 +10,8 @@ class UIElement: public sf::Drawable, public sf::Transformable
 public:
     virtual ~UIElement() = default;
 
+    virtual sf::Vector2u getSize() const = 0;
+
     /**
      * @brief Process an event and updates the UIElement subclass object accordingly.
      * 

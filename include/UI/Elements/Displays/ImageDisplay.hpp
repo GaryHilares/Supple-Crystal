@@ -55,5 +55,5 @@ public:
      * 
      * @return sf::Vector2f Dimensions of the object.
      */
-    sf::Vector2f getDimensions();
+    sf::Vector2u getSize() const override;
 };

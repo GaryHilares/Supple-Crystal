@@ -1,17 +1,29 @@
 #include "../../../../include/UI/Elements/Menus/PopupMenu.hpp"
-#include "../../../../include/UI/Settings/style-constants.hpp"
-#include <iostream>
+#include <optional>
+#include <cassert>
 
 PopupMenu::PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons):
     buttons(new_buttons),
     do_display(false),
-    border(sf::Vector2f(Constants::PopupMenu::Button::Width,Constants::PopupMenu::Button::Height*new_buttons.size()))
+    border(sf::Vector2f(new_buttons[0]->getSize().x,new_buttons[0]->getSize().y*new_buttons.size()))
 {
+    std::optional<sf::Vector2u> buttons_size;
+    for(const std::shared_ptr<Button>& button: new_buttons)
+    {
+        if(buttons_size.has_value())
+            assert(button->getSize() == buttons_size);
+        else
+            buttons_size = button->getSize();
+    }
     this->border.setFillColor(sf::Color::Transparent);
     this->border.setOutlineColor(sf::Color::Black);
     this->border.setOutlineThickness(1);
-    for(std::vector<std::shared_ptr<Button>>::size_type i = 0; i < this->buttons.size(); i++)
-        this->buttons[i]->setPosition(0,i*Constants::PopupMenu::Button::Height);
+    unsigned int x = 0;
+    for(std::shared_ptr<Button>& button: this->buttons)
+    {
+        button->setPosition(0,x);
+        x += button->getSize().y;
+    }
 }
 
 void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -32,8 +44,8 @@ void PopupMenu::display(bool new_do_display)
 
 UIElement* PopupMenu::getButtonFromCoords(sf::Vector2f pointCoords)
 {
-    return this->containsPoint(pointCoords)
-        ? dynamic_cast<UIElement*>(this->buttons[(pointCoords.y - this->getPosition().y)/Constants::PopupMenu::Button::Height].get()) : nullptr;
+    return this->containsPoint(pointCoords) && !this->buttons.empty()
+        ? dynamic_cast<UIElement*>(this->buttons[(pointCoords.y - this->getPosition().y)/this->buttons[0]->getSize().y].get()) : nullptr;
 }
 
 void PopupMenu::processEvent(sf::Event event)
@@ -47,10 +59,16 @@ void PopupMenu::processEvent(sf::Event event)
 bool PopupMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
-    if(!this->do_display)
-        return false;
-    return position.y < pointCoords.y
-        && position.y + this->buttons.size() * Constants::PopupMenu::Button::Height > pointCoords.y
+    return this->do_display
+        && !this->buttons.empty()
+        && position.y < pointCoords.y
+        && position.y + this->buttons.size() * this->buttons[0]->getSize().y > pointCoords.y
         && position.x < pointCoords.x
-        && position.x + Constants::PopupMenu::Button::Width > pointCoords.x;
+        && position.x + this->buttons[0]->getSize().x > pointCoords.x;
+}
+
+sf::Vector2u PopupMenu::getSize() const
+{
+    return !this->buttons.empty() ?
+        sf::Vector2u{this->buttons[0]->getSize().x,(unsigned int) this->buttons.size() * this->buttons[0]->getSize().y}:sf::Vector2u{0,0};
 }
