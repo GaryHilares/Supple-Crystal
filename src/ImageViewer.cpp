@@ -7,7 +7,6 @@
 #include "../include/UI/Settings/style-constants.hpp"
 #include "../include/OSUtils.hpp"
 #include "../include/Utils.hpp"
-#include <iostream>
 
 ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_folder, const std::experimental::filesystem::path new_file_path):
     window(sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height),""),
@@ -23,12 +22,10 @@ ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_fold
         {"set_next_image",[this](){
             this->openImageFromPath(this->files.next());
             this->updateWindowTitle("Fast");
-            std::cout << this->files.cur().string() << std::endl;
         }},
         {"set_previous_image",[this](){
             this->openImageFromPath(this->files.prev());
             this->updateWindowTitle("Fast");
-            std::cout << this->files.cur().string() << std::endl;
         }}
     })
 {
