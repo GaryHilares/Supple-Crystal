@@ -3,9 +3,9 @@
 
 /**
  * @brief Base pure virtual class for buttons.
- * 
+ *
  */
-class Button : public UIElement{
+class Button : public UIElement {
 public:
     virtual ~Button() = default;
 };

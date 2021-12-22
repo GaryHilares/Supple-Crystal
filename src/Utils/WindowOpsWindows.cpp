@@ -1,8 +1,9 @@
 #ifdef _WIN32
-#include "../include/OSUtils.hpp"
+#include "../../include/Utils/WindowOps.hpp"
 #include <Windows.h>
 
-void OS::maximizeWindow(sf::RenderWindow& window){
+void OS::maximizeWindow(sf::RenderWindow& window)
+{
     ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
 }
 
