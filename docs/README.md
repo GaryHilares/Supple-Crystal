@@ -14,7 +14,7 @@
 
 ## Useful links
 - [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
-- [Project's Style Guide](https://github.com/GaryNLOL/Style-Guides/).
+- [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
 - [Discord Server.](https://discord.gg/RQN6gcDQwX)
 
 ## What is Supple Crystal?
