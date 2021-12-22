@@ -1,6 +1,7 @@
 #include "../../../../include/UI/Elements/Menus/ToolbarMenu.hpp"
 #include "../../../../include/UI/Settings/style-constants.hpp"
 #include <cassert>
+#include <optional>
 
 UIElement* ToolbarMenu::getButtonFromCoords(sf::Vector2f pointCoords)
 {
