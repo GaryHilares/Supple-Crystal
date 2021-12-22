@@ -37,3 +37,8 @@ sf::Vector2u ImageDisplay::getSize() const
 {
     return this->sprite.getTexture()->getSize();
 }
+
+const sf::Texture& ImageDisplay::getTexture()
+{
+    return this->image;
+}
