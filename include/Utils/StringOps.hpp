@@ -2,7 +2,7 @@
 
 /**
  * @brief Replaces all the ocurrences of a character in a string.
- * 
+ *
  * @param str The string.
  * @param to_replace The character to replace.
  * @param replacement The replacement of the character.
