@@ -52,6 +52,12 @@ set(CPPSources
     "src/ResourceLoader.cpp"
     )
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "Release")
+set(CPPSources ${CPPSources} src/main.cpp)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Tests")
+    set(CPPSources ${CPPSources} tests/tests.cpp)
+endif()
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE}")
 make_directory("${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -86,6 +92,15 @@ endforeach()
 
 make_directory("${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets")
 file(COPY "${PROJECT_SOURCE_DIR}/assets/logo_bg-true_resized.png" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Tests")
+    gtest_discover_tests(Supple-Crystal)
+    add_custom_command(
+        TARGET Supple-Crystal
+        POST_BUILD
+        COMMAND "ctest.exe" "--output-on-failure"
+    )
+endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
