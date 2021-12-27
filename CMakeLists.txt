@@ -1,5 +1,5 @@
 # Project settings
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.3.0)
 project(Supple-Crystal VERSION 0.1.0)
 
 include(CTest)
@@ -14,8 +14,9 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-if(NOT (CMAKE_BUILD_TYPE STREQUAL "Release") AND NOT (CMAKE_BUILD_TYPE STREQUAL "Debug") AND NOT (CMAKE_BUILD_TYPE STREQUAL "Tests"))
-    message(FATAL_ERROR "CMAKE_BUILD_TYPE not recognized.")
+set(BUILD_TYPES "Debug" "Release" "Tests")
+if(NOT ("${CMAKE_BUILD_TYPE}" IN_LIST BUILD_TYPES))
+    message(FATAL_ERROR "CMAKE_BUILD_TYPE not recognized: ${CMAKE_BUILD_TYPE} not in ${BUILD_TYPES}")
 endif()
 
 set(SFML_DIR "extlibs/SFML-2.5.1/lib/cmake/SFML")
@@ -33,16 +34,34 @@ else()
     set(GTEST_INCLUDE_DIRS "")
 endif()
 
-file(GLOB_RECURSE CPPSources RELATIVE ${CMAKE_SOURCE_DIR} "src/*.cpp")
+set(CPPSources
+    "src/UI/Controllers/HotkeyController.cpp"
+    "src/UI/Controllers/SlideController.cpp"
+    "src/UI/Elements/Buttons/PopupMenuButton.cpp"
+    "src/UI/Elements/Displays/ImageDisplay.cpp"
+    "src/UI/Elements/Menus/ContextMenu.cpp"
+    "src/UI/Elements/Menus/PopupMenu.cpp"
+    "src/UI/Elements/Menus/ToolbarMenu.cpp"
+    "src/Utils/StringOps.cpp"
+    "src/Utils/WindowOps.cpp"
+    "src/Utils/WindowOpsUnix.cpp"
+    "src/Utils/WindowOpsWindows.cpp"
+    "src/App.cpp"
+    "src/ImageViewer.cpp"
+    "src/ResourceLoader.cpp"
+    )
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(CPPSources ${CPPSources} "src/main.cpp")
     make_directory("${CMAKE_BINARY_DIR}/Release")
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Release")
     add_executable(Supple-Crystal WIN32 ${CPPSources} resource/icon.rc)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CPPSources ${CPPSources} "src/main.cpp")
     make_directory("${CMAKE_BINARY_DIR}/Debug")
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Debug")
     add_executable(Supple-Crystal ${CPPSources} resource/icon.rc)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Tests")
+    set(CPPSources ${CPPSources})
     make_directory("${CMAKE_BINARY_DIR}/Tests")
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Tests")
     add_executable(Supple-Crystal ${CPPSources} resource/icon.rc)
