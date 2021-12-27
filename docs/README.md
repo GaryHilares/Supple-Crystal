@@ -38,6 +38,7 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 ### Dependencies
 #### Development
 - SFML.
+- GoogleTest.
 - CMake.
 
 ## Motivation
