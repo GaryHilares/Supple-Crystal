@@ -29,7 +29,7 @@ public:
         if (loading_object.has_value())
             this->resources[resource_name] = loading_object.value();
         else
-            throw;
+            throw std::runtime_error("Couldn't load resource " + resource_name + ".");
     }
     template <class T>
     const T& get(std::string resource_name) const
