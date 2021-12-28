@@ -2,23 +2,23 @@
 #include <cassert>
 #include <optional>
 
-PopupMenu::PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons)
-    : buttons(new_buttons)
-    , do_display(false)
-    , border(sf::Vector2f(new_buttons[0]->getSize().x, new_buttons[0]->getSize().y * new_buttons.size()))
+PopupMenu::PopupMenu(const std::vector<std::shared_ptr<Button>>& newButtons)
+    : m_buttons(newButtons)
+    , m_doDisplay(false)
+    , m_border(sf::Vector2f(newButtons[0]->getSize().x, newButtons[0]->getSize().y * newButtons.size()))
 {
-    std::optional<sf::Vector2u> buttons_size;
-    for (const std::shared_ptr<Button>& button : new_buttons) {
-        if (buttons_size.has_value())
-            assert(button->getSize() == buttons_size);
+    std::optional<sf::Vector2u> buttonsSize;
+    for (const std::shared_ptr<Button>& button : newButtons) {
+        if (buttonsSize.has_value())
+            assert(button->getSize() == buttonsSize);
         else
-            buttons_size = button->getSize();
+            buttonsSize = button->getSize();
     }
-    this->border.setFillColor(sf::Color::Transparent);
-    this->border.setOutlineColor(sf::Color::Black);
-    this->border.setOutlineThickness(1);
+    m_border.setFillColor(sf::Color::Transparent);
+    m_border.setOutlineColor(sf::Color::Black);
+    m_border.setOutlineThickness(1);
     unsigned int x = 0;
-    for (std::shared_ptr<Button>& button : this->buttons) {
+    for (std::shared_ptr<Button>& button : m_buttons) {
         button->setPosition(0, x);
         x += button->getSize().y;
     }
@@ -26,46 +26,46 @@ PopupMenu::PopupMenu(const std::vector<std::shared_ptr<Button>>& new_buttons)
 
 void PopupMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (this->do_display) {
+    if (m_doDisplay) {
         states.transform *= this->getTransform();
-        target.draw(this->border, states);
-        for (const std::shared_ptr<Button>& button : this->buttons)
+        target.draw(m_border, states);
+        for (const std::shared_ptr<Button>& button : m_buttons)
             target.draw(*button, states);
     }
 }
 
-void PopupMenu::display(bool new_do_display)
+void PopupMenu::display(bool newDoDisplay)
 {
-    this->do_display = new_do_display;
+    m_doDisplay = newDoDisplay;
 }
 
 UIElement* PopupMenu::getButtonFromCoords(sf::Vector2f pointCoords)
 {
-    return this->containsPoint(pointCoords) && !this->buttons.empty()
-        ? dynamic_cast<UIElement*>(this->buttons[(pointCoords.y - this->getPosition().y) / this->buttons[0]->getSize().y].get())
+    return this->containsPoint(pointCoords) && !m_buttons.empty()
+        ? dynamic_cast<UIElement*>(m_buttons[(pointCoords.y - this->getPosition().y) / m_buttons[0]->getSize().y].get())
         : nullptr;
 }
 
 void PopupMenu::processEvent(sf::Event event)
 {
     const sf::Vector2f coords = { float(event.mouseButton.x), float(event.mouseButton.y) };
-    UIElement* button_in_coords = this->getButtonFromCoords(coords);
-    if (button_in_coords)
-        button_in_coords->processEvent(event);
+    UIElement* buttonInCoords = this->getButtonFromCoords(coords);
+    if (buttonInCoords)
+        buttonInCoords->processEvent(event);
 }
 
 bool PopupMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
-    return this->do_display
-        && !this->buttons.empty()
+    return m_doDisplay
+        && !m_buttons.empty()
         && position.y < pointCoords.y
-        && position.y + this->buttons.size() * this->buttons[0]->getSize().y > pointCoords.y
+        && position.y + m_buttons.size() * m_buttons[0]->getSize().y > pointCoords.y
         && position.x < pointCoords.x
-        && position.x + this->buttons[0]->getSize().x > pointCoords.x;
+        && position.x + m_buttons[0]->getSize().x > pointCoords.x;
 }
 
 sf::Vector2u PopupMenu::getSize() const
 {
-    return !this->buttons.empty() ? sf::Vector2u { this->buttons[0]->getSize().x, (unsigned int)this->buttons.size() * this->buttons[0]->getSize().y } : sf::Vector2u { 0, 0 };
+    return !m_buttons.empty() ? sf::Vector2u { m_buttons[0]->getSize().x, (unsigned int)m_buttons.size() * m_buttons[0]->getSize().y } : sf::Vector2u { 0, 0 };
 }

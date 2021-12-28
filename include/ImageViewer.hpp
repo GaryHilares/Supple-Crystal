@@ -26,19 +26,19 @@ enum class ImageViewerStatus {
  */
 class ImageViewer {
 private:
-    ImageViewerStatus status;
-    sf::RenderWindow window;
-    ImageDisplay image_display;
-    CyclicalDoublyLinkedList<std::experimental::filesystem::path> files;
-    std::optional<std::experimental::filesystem::path> loadedFolder;
-    std::string mode;
+    ImageViewerStatus m_status;
+    sf::RenderWindow m_window;
+    ImageDisplay m_imageDisplay;
+    CyclicalDoublyLinkedList<std::experimental::filesystem::path> m_files;
+    std::optional<std::experimental::filesystem::path> m_loadedFolder;
+    std::string m_mode;
+    ResourceLoader<sf::Font, sf::Image> m_resourceLoader;
+    const std::unordered_map<std::string, std::function<void()>> m_functionalities;
 
-    ResourceLoader<sf::Font, sf::Image> resource_loader;
-    const std::unordered_map<std::string, std::function<void()>> functionalities;
     void openImageFromPath(const std::experimental::filesystem::path& filename);
-    static std::string formatWindowTitle(const std::experimental::filesystem::path& file_path, const std::string mode);
+    static std::string formatWindowTitle(const std::experimental::filesystem::path& filePath, const std::string mode);
     static bool isSupportedImageType(std::experimental::filesystem::path file);
-    void updateWindowTitle(std::experimental::filesystem::path new_file_path);
+    void updateWindowTitle(std::experimental::filesystem::path newFilePath);
 
 public:
     /**
@@ -47,19 +47,19 @@ public:
      * @param new_resource_folder Folder where assets and other resources are stored.
      * @param new_file_path File to open in the image viewer.
      */
-    ImageViewer(const std::experimental::filesystem::path resource_folder);
+    ImageViewer(const std::experimental::filesystem::path resourceFolder);
 
     /**
      * @brief Runs the ImageViewer on "Fast mode".
      *
      */
-    std::pair<ImageViewerStatus, std::experimental::filesystem::path> runFastMode(const std::experimental::filesystem::path new_file_path);
+    std::pair<ImageViewerStatus, std::experimental::filesystem::path> runFastMode(const std::experimental::filesystem::path newFilePath);
 
     /**
      * @brief Runs the ImageViewer on "Polished mode".
      *
      */
-    std::pair<ImageViewerStatus, std::experimental::filesystem::path> runPolishedMode(const std::experimental::filesystem::path new_file_path);
+    std::pair<ImageViewerStatus, std::experimental::filesystem::path> runPolishedMode(const std::experimental::filesystem::path newFilePath);
 
     /**
      * @brief Gets the most recent status of the ImageViewer object.

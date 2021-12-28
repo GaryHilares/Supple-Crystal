@@ -5,79 +5,79 @@
 
 UIElement* ToolbarMenu::getButtonFromCoords(sf::Vector2f pointCoords)
 {
-    if (!this->containsPoint(pointCoords) || this->buttons.empty())
+    if (!this->containsPoint(pointCoords) || m_buttons.empty())
         return nullptr;
-    sf::Vector2u buttons_size = this->buttons[0]->getSize();
-    int buttons_per_row = this->size.x / buttons_size.x;
-    if (buttons_per_row == 0)
-        buttons_per_row = 1;
-    int button_number = (pointCoords.x - this->getPosition().x) / buttons_size.x;
-    int row_number = (pointCoords.y - this->getPosition().y) / buttons_size.y;
-    std::vector<std::shared_ptr<Button>>::size_type index = button_number + row_number * buttons_per_row;
-    return index < this->buttons.size()
-        ? dynamic_cast<UIElement*>(this->buttons[index].get())
+    sf::Vector2u buttonsSize = m_buttons[0]->getSize();
+    int buttonsPerRow = m_size.x / buttonsSize.x;
+    if (buttonsPerRow == 0)
+        buttonsPerRow = 1;
+    int buttonNumber = (pointCoords.x - this->getPosition().x) / buttonsSize.x;
+    int rowNumber = (pointCoords.y - this->getPosition().y) / buttonsSize.y;
+    std::vector<std::shared_ptr<Button>>::size_type index = buttonNumber + rowNumber * buttonsPerRow;
+    return index < m_buttons.size()
+        ? dynamic_cast<UIElement*>(m_buttons[index].get())
         : nullptr;
 }
 
-ToolbarMenu::ToolbarMenu(const std::vector<std::shared_ptr<Button>>& new_buttons, int new_width)
-    : buttons(new_buttons)
+ToolbarMenu::ToolbarMenu(const std::vector<std::shared_ptr<Button>>& newButtons, int newWidth)
+    : m_buttons(newButtons)
 {
-    std::optional<sf::Vector2u> buttons_size;
-    for (const std::shared_ptr<Button>& button : new_buttons) {
-        if (buttons_size.has_value())
-            assert(button->getSize() == buttons_size);
+    std::optional<sf::Vector2u> buttonsSize;
+    for (const std::shared_ptr<Button>& button : newButtons) {
+        if (buttonsSize.has_value())
+            assert(button->getSize() == buttonsSize);
         else
-            buttons_size = button->getSize();
+            buttonsSize = button->getSize();
     }
-    this->setWidth(new_width);
-    this->background.setFillColor(sf::Color(Constants::ToolbarMenu::Color));
+    this->setWidth(newWidth);
+    m_background.setFillColor(sf::Color(Constants::ToolbarMenu::Color));
 }
 
 void ToolbarMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= this->getTransform();
-    target.draw(this->background);
-    for (const std::shared_ptr<Button>& button : this->buttons)
+    target.draw(m_background);
+    for (const std::shared_ptr<Button>& button : m_buttons)
         target.draw(*button, states);
 }
 
 void ToolbarMenu::processEvent(sf::Event event)
 {
     const sf::Vector2f coords = { float(event.mouseButton.x), float(event.mouseButton.y) };
-    UIElement* button_in_coords = this->getButtonFromCoords(coords);
-    if (button_in_coords)
-        button_in_coords->processEvent(event);
+    UIElement* buttonInCoords = this->getButtonFromCoords(coords);
+    if (buttonInCoords)
+        buttonInCoords->processEvent(event);
 }
 
 sf::Vector2u ToolbarMenu::getSize() const
 {
-    return { this->size.x, this->size.y };
+    return { m_size.x, m_size.y };
 }
 
 bool ToolbarMenu::containsPoint(sf::Vector2f pointCoords)
 {
     sf::Vector2f position = this->getPosition();
     return position.y < pointCoords.y
-        && position.y + this->size.y > pointCoords.y
+        && position.y + m_size.y > pointCoords.y
         && position.x < pointCoords.x
-        && position.x + this->size.x > pointCoords.x;
+        && position.x + m_size.x > pointCoords.x;
 }
 
-void ToolbarMenu::setWidth(unsigned int new_width)
+void ToolbarMenu::setWidth(unsigned int newWidth)
 {
-    this->size.x = new_width;
+    m_size.x = newWidth;
     unsigned int x = 0;
     unsigned int y = 0;
-    for (std::shared_ptr<Button>& button : buttons) {
-        if (x + button->getSize().x > new_width && x != 0) {
+    for (std::shared_ptr<Button>& button : m_buttons) {
+        if (x + button->getSize().x > newWidth && x != 0) {
             x = 0;
             y += button->getSize().y;
         }
         button->setPosition(x, y);
         x += button->getSize().x;
     }
-    this->size.y = y;
-    if (!this->buttons.empty() && x != 0)
-        this->size.y += this->buttons[this->buttons.size() - 1]->getSize().y;
-    this->background.setSize(sf::Vector2f { (float)this->size.x, (float)this->size.y });
+    m_size.y = y;
+    if (!m_buttons.empty() && x != 0)
+        m_size.y += m_buttons[m_buttons.size() - 1]->getSize().y;
+    m_background.setSize(sf::Vector2f { (float)m_size.x, (float)m_size.y });
 }

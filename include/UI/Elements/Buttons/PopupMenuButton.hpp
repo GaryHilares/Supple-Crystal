@@ -9,10 +9,10 @@
  */
 class PopupMenuButton : public Button {
 private:
-    sf::RectangleShape background;
-    const sf::Font& font;
-    sf::Text text;
-    std::function<void()> on_click;
+    sf::RectangleShape m_background;
+    const sf::Font& m_font;
+    sf::Text m_text;
+    std::function<void()> m_onClick;
 
 public:
     /**
@@ -22,7 +22,7 @@ public:
      * @param new_font A reference to the font to use on the button. If the font is destroyed before the button, a dangling reference is generated.
      * @param new_on_click Function to run when the button is clicked.
      */
-    PopupMenuButton(const std::string& text_to_display, const sf::Font& new_font, const std::function<void()>& new_on_click);
+    PopupMenuButton(const std::string& textToDisplay, const sf::Font& newFont, const std::function<void()>& newOnClick);
 
     /**
      * @brief Draws the object to a RenderTarget.

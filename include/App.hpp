@@ -8,8 +8,8 @@
  */
 class App {
 private:
-    bool do_exit;
-    int exit_code;
+    bool m_doExit;
+    int m_exitCode;
     /**
      * @brief Parses the arguments and extracts the important data.
      *

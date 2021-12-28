@@ -2,26 +2,26 @@
 
 // std::make_optional may see pretty redundant, but is to avoid bugs in GCC.
 // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=80635
-SlideController::SlideController(ImageDisplay& new_image_display)
-    : enabled(true)
-    , last_clicked_mouse_position(std::make_optional<sf::Vector2i>())
-    , image_display(new_image_display)
+SlideController::SlideController(ImageDisplay& newImageDisplay)
+    : m_enabled(true)
+    , m_lastClickedMousePosition(std::make_optional<sf::Vector2i>())
+    , m_imageDisplay(newImageDisplay)
 {
 }
 
-void SlideController::setEnabled(const bool new_enabled) { enabled = new_enabled; }
+void SlideController::setEnabled(const bool newEnabled) { m_enabled = newEnabled; }
 
 void SlideController::checkForUpdates(sf::Event event)
 {
-    if (event.type == sf::Event::MouseMoved && this->enabled) {
+    if (event.type == sf::Event::MouseMoved && m_enabled) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            const sf::Vector2i current_mouse_position = { event.mouseMove.x, event.mouseMove.y };
-            if (this->last_clicked_mouse_position.has_value()) {
-                this->image_display.move(-(this->last_clicked_mouse_position.value().x - current_mouse_position.x),
-                    -(this->last_clicked_mouse_position.value().y - current_mouse_position.y));
+            const sf::Vector2i currentMousePosition = { event.mouseMove.x, event.mouseMove.y };
+            if (m_lastClickedMousePosition.has_value()) {
+                m_imageDisplay.move(-(m_lastClickedMousePosition.value().x - currentMousePosition.x),
+                    -(m_lastClickedMousePosition.value().y - currentMousePosition.y));
             }
-            this->last_clicked_mouse_position = current_mouse_position;
+            m_lastClickedMousePosition = currentMousePosition;
         } else
-            this->last_clicked_mouse_position.reset();
+            m_lastClickedMousePosition.reset();
     }
 }

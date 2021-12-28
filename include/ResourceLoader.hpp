@@ -9,35 +9,35 @@
 template <class... LoadableTypes>
 class ResourceLoader {
 private:
-    std::unordered_map<std::string, std::variant<LoadableTypes...>> resources;
-    std::vector<std::string> search_directories;
+    std::unordered_map<std::string, std::variant<LoadableTypes...>> m_resources;
+    std::vector<std::string> m_searchDirectories;
 
 public:
-    ResourceLoader(const std::vector<std::string>& new_search_directories)
-        : search_directories(new_search_directories)
+    ResourceLoader(const std::vector<std::string>& newSearchDirectories)
+        : m_searchDirectories(newSearchDirectories)
     {
     }
     template <class LoadableType>
-    void load(std::string resource_name)
+    void load(std::string resourceName)
     {
-        const std::map<std::string_view, std::string_view> resources_paths = {
+        const std::map<std::string_view, std::string_view> resourcesPaths = {
             std::pair<std::string_view, std::string_view> { "icon", "assets/logo_bg-true_resized.png" },
             std::pair<std::string_view, std::string_view> { "font", "PublicSans-Regular.ttf" }
         };
-        std::string_view resource_path = resources_paths.at(resource_name);
-        std::optional<LoadableType> loading_object = loadFromFileWithFallbacks<LoadableType>(std::string(resource_path.begin(), resource_path.end()), this->search_directories);
-        if (loading_object.has_value())
-            this->resources[resource_name] = loading_object.value();
+        std::string_view resourcePath = resourcesPaths.at(resourceName);
+        std::optional<LoadableType> loadingObject = loadFromFileWithFallbacks<LoadableType>(std::string(resourcePath.begin(), resourcePath.end()), m_searchDirectories);
+        if (loadingObject.has_value())
+            m_resources[resourceName] = loadingObject.value();
         else
-            throw std::runtime_error("Couldn't load resource \"" + resource_name + "\".");
+            throw std::runtime_error("Couldn't load resource \"" + resourceName + "\".");
     }
     template <class T>
-    const T& get(std::string resource_name) const
+    const T& get(std::string resourceName) const
     {
-        return std::get<T>(this->resources.at(resource_name));
+        return std::get<T>(m_resources.at(resourceName));
     }
-    void unload(std::string resource_name)
+    void unload(std::string resourceName)
     {
-        this->resources.erase(this->resources.find(resource_name));
+        this->resources.erase(m_resources.find(resourceName));
     }
 };

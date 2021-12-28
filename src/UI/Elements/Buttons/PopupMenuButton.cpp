@@ -1,28 +1,28 @@
 #include "../../../../include/UI/Elements/Buttons/PopupMenuButton.hpp"
 #include "../../../../include/UI/Settings/style-constants.hpp"
 
-PopupMenuButton::PopupMenuButton(const std::string& text_to_display, const sf::Font& new_font, const std::function<void()>& new_on_click)
-    : background({ Constants::PopupMenu::Button::Width, Constants::PopupMenu::Button::Height })
-    , font(new_font)
-    , text(text_to_display, font, Constants::PopupMenu::Button::FontSize)
-    , on_click(new_on_click)
+PopupMenuButton::PopupMenuButton(const std::string& textToDisplay, const sf::Font& newFont, const std::function<void()>& newOnClick)
+    : m_background({ Constants::PopupMenu::Button::Width, Constants::PopupMenu::Button::Height })
+    , m_font(newFont)
+    , m_text(textToDisplay, m_font, Constants::PopupMenu::Button::FontSize)
+    , m_onClick(newOnClick)
 {
-    this->text.move(Constants::PopupMenu::Button::TextPadding::Left, Constants::PopupMenu::Button::TextPadding::Top);
-    this->background.setFillColor(sf::Color::White);
-    this->text.setFillColor(sf::Color::Black);
+    m_text.move(Constants::PopupMenu::Button::TextPadding::Left, Constants::PopupMenu::Button::TextPadding::Top);
+    m_background.setFillColor(sf::Color::White);
+    m_text.setFillColor(sf::Color::Black);
 }
 
 void PopupMenuButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    states.transform *= this->getTransform();
-    target.draw(this->background, states);
-    target.draw(this->text, states);
+    states.transform *= getTransform();
+    target.draw(m_background, states);
+    target.draw(m_text, states);
 }
 
 void PopupMenuButton::processEvent(sf::Event mouse_event)
 {
     if (mouse_event.type == sf::Event::MouseButtonReleased && mouse_event.mouseButton.button == sf::Mouse::Left)
-        return this->on_click();
+        return m_onClick();
 }
 
 sf::Vector2u PopupMenuButton::getSize() const

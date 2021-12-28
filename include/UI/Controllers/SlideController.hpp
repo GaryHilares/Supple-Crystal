@@ -10,9 +10,9 @@
  */
 class SlideController : public Controller {
 private:
-    bool enabled;
-    std::optional<sf::Vector2i> last_clicked_mouse_position;
-    ImageDisplay& image_display;
+    bool m_enabled;
+    std::optional<sf::Vector2i> m_lastClickedMousePosition;
+    ImageDisplay& m_imageDisplay;
 
 public:
     /**
@@ -20,14 +20,14 @@ public:
      *
      * @param new_image_display A reference to the image to control.
      */
-    SlideController(ImageDisplay& new_image_display);
+    SlideController(ImageDisplay& newImageDisplay);
 
     /**
      * @brief Set whether the SlideController is enabled or not.
      *
      * @param new_enabled New enabled value.
      */
-    void setEnabled(const bool new_enabled);
+    void setEnabled(const bool newEnabled);
 
     /**
      * @brief Check for MouseMoved events and slides the image accordingly.
