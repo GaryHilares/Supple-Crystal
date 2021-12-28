@@ -2,8 +2,15 @@
 
 void MessageBox::run() const
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), this->title);
-    sf::Text text(this->name, this->font, 16);
+    const int window_width = 10 * this->name.size();
+    constexpr int window_height = 100;
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), this->title);
+    window.setFramerateLimit(60);
+    sf::Text text(this->name, this->font, 14);
+    text.setOutlineColor(sf::Color::Black);
+    text.setFillColor(sf::Color::Black);
+    text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
+    text.setPosition(window_width / 2, window_height / 2);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -13,10 +20,10 @@ void MessageBox::run() const
             default:
                 break;
             }
-            window.clear();
-            window.draw(text);
-            window.display();
         }
+        window.clear(sf::Color::White);
+        window.draw(text);
+        window.display();
     }
 }
 
