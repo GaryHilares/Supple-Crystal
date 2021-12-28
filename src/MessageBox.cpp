@@ -2,15 +2,15 @@
 
 void MessageBox::run() const
 {
-    const int window_width = 10 * this->name.size();
-    constexpr int window_height = 100;
-    sf::RenderWindow window(sf::VideoMode(window_width, window_height), this->title);
+    const int windowWidth = 10 * m_name.size();
+    constexpr int windowHeight = 100;
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), m_title);
     window.setFramerateLimit(60);
-    sf::Text text(this->name, this->font, 14);
+    sf::Text text(m_name, m_font, 14);
     text.setOutlineColor(sf::Color::Black);
     text.setFillColor(sf::Color::Black);
     text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-    text.setPosition(window_width / 2, window_height / 2);
+    text.setPosition(windowWidth / 2, windowHeight / 2);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -27,10 +27,10 @@ void MessageBox::run() const
     }
 }
 
-MessageBox::MessageBox(const std::string& new_title, const std::string& new_name, const sf::Font& new_font)
-    : title(new_title)
-    , name(new_name)
-    , font(new_font)
+MessageBox::MessageBox(const std::string& newTitle, const std::string& newName, const sf::Font& newFont)
+    : m_title(newTitle)
+    , m_name(newName)
+    , m_font(newFont)
 {
     this->run();
 }

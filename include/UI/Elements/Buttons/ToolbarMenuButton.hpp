@@ -8,8 +8,8 @@
  */
 class ToolbarMenuButton : public Button {
 private:
-    sf::RectangleShape background;
-    std::function<void()> on_click;
+    sf::RectangleShape m_background;
+    std::function<void()> m_onClick;
 
 public:
     /**
@@ -17,7 +17,7 @@ public:
      *
      * @param new_on_click Function to run when the button is clicked.
      */
-    ToolbarMenuButton(const std::function<void()>& new_on_click);
+    ToolbarMenuButton(const std::function<void()>& newOnClick);
 
     /**
      * @brief Draws the object to a RenderTarget.

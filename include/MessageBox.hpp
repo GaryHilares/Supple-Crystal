@@ -3,12 +3,12 @@
 
 class MessageBox {
 private:
-    const std::string& title;
-    const std::string& name;
-    const sf::Font& font;
+    const std::string& m_title;
+    const std::string& m_name;
+    const sf::Font& m_font;
 
     void run() const;
 
 public:
-    MessageBox(const std::string& new_title, const std::string& new_name, const sf::Font& new_font);
+    MessageBox(const std::string& newTitle, const std::string& newName, const sf::Font& newFont);
 };

@@ -10,7 +10,7 @@
  */
 class HotkeysController : public Controller {
 private:
-    const std::unordered_map<sf::Keyboard::Key, std::function<void()>> hotkey_bindings;
+    const std::unordered_map<sf::Keyboard::Key, std::function<void()>> m_hotkeyBindings;
 
 public:
     /**
@@ -18,7 +18,7 @@ public:
      *
      * @param new_hotkey_bindings Hotkey bindings to manage.
      */
-    HotkeysController(std::unordered_map<sf::Keyboard::Key, std::function<void()>> new_hotkey_bindings);
+    HotkeysController(std::unordered_map<sf::Keyboard::Key, std::function<void()>> newHotkeyBindings);
 
     /**
      * @brief Checks if any hotkey has been triggered.
@@ -26,5 +26,5 @@ public:
      * @param key_released_event A key released event to check.
      * @throws FatalError Terminates the program if the event isn't a key released event.
      */
-    void checkForUpdates(sf::Event key_released_event) override;
+    void checkForUpdates(sf::Event keyReleasedEvent) override;
 };
