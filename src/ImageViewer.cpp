@@ -34,6 +34,9 @@ ImageViewer::ImageViewer(const std::experimental::filesystem::path resource_fold
 
 void ImageViewer::openImageFromPath(const std::experimental::filesystem::path& new_file_path)
 {
+    if (!isSupportedImageType(new_file_path)) {
+        throw std::runtime_error("This image file type is not supported by Supple-Crystal.");
+    }
     this->image_display = ImageDisplay(new_file_path.u8string());
     this->image_display.setOrigin(image_display.getSize().x / 2, image_display.getSize().y / 2);
     this->image_display.setPosition(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2);

@@ -1,3 +1,4 @@
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -11,11 +12,11 @@
  * @throw Error if the object isn't found in any of the directories.
  */
 template <class LoadableObject>
-LoadableObject loadFromFileWithFallbacks(const std::string& filename, const std::vector<std::string>& fallbackDirectories)
+std::optional<LoadableObject> loadFromFileWithFallbacks(const std::string& filename, const std::vector<std::string>& fallbackDirectories)
 {
     LoadableObject loaded_object;
     for (const std::string& directory : fallbackDirectories)
         if (loaded_object.loadFromFile(directory + filename))
             return loaded_object;
-    throw;
+    return std::nullopt;
 }
