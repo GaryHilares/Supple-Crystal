@@ -1,7 +1,7 @@
 #include "../include/App.hpp"
 #include "../include/ImageViewer.hpp"
+#include "../include/MessageBox.hpp"
 #include <iostream>
-#include <windows.h>
 
 const std::pair<std::experimental::filesystem::path, std::experimental::filesystem::path> App::parseArguments(const int argc, char* argv[])
 {
@@ -45,12 +45,13 @@ int App::run(const int argc, char* argv[])
         }
         return this->exit_code;
     } catch (const std::runtime_error& error) {
+        const std::experimental::filesystem::path executable_path = std::string(argv[0]);
+        const std::experimental::filesystem::path resource_folder = executable_path.parent_path();
         std::cerr << error.what() << std::endl;
-        MessageBoxA(
-            NULL,
-            error.what(),
+        MessageBox(
             "Error",
-            MB_OK | MB_ICONERROR);
+            error.what(),
+            loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf", { resource_folder.string() + "/", "", "C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/" }));
         return 1;
     }
 }

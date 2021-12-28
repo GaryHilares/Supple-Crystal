@@ -50,6 +50,7 @@ set(CPPSources
     "src/App.cpp"
     "src/ImageViewer.cpp"
     "src/ResourceLoader.cpp"
+    "src/MessageBox.cpp"
     )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "Release")
