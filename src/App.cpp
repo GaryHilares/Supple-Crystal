@@ -36,7 +36,7 @@ int App::run(const int argc, char* argv[])
                 this->do_exit = true;
                 break;
             case ImageViewerStatus::OngoingTask:
-                std::cout << "OngoingTask: Something was not expected to happen" << std::endl;
+                std::cerr << "OngoingTask: Something was not expected to happen" << std::endl;
                 throw;
             case ImageViewerStatus::NothingAssigned:
                 file_path = viewer.runFastMode(file_path).second;
@@ -45,14 +45,18 @@ int App::run(const int argc, char* argv[])
         }
         return this->exit_code;
     } catch (const std::runtime_error& error) {
-        const std::experimental::filesystem::path executable_path = std::string(argv[0]);
-        const std::experimental::filesystem::path resource_folder = executable_path.parent_path();
-        std::cerr << error.what() << std::endl;
-        std::optional<sf::Font> loading_object = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf", { resource_folder.string() + "/", "", "C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/" });
-        if (loading_object.has_value())
-            MessageBox("Error", error.what(), loading_object.value());
-        else
-            std::cerr << "Couldn't load error message box font." << std::endl;
+        if (argc >= 1) {
+            const std::experimental::filesystem::path executable_path = std::string(argv[0]);
+            const std::experimental::filesystem::path resource_folder = executable_path.parent_path();
+            std::cerr << error.what() << std::endl;
+            std::optional<sf::Font> loading_object = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf", { resource_folder.string() + "/", "", "C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/" });
+            if (loading_object.has_value())
+                MessageBox("Error", error.what(), loading_object.value());
+            else
+                std::cerr << "Couldn't load error message box font." << std::endl;
+        } else {
+            std::cerr << "The program received less than 1 argument." << std::endl;
+        }
         return 1;
     }
 }
