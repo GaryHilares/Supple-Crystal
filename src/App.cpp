@@ -48,10 +48,11 @@ int App::run(const int argc, char* argv[])
         const std::experimental::filesystem::path executable_path = std::string(argv[0]);
         const std::experimental::filesystem::path resource_folder = executable_path.parent_path();
         std::cerr << error.what() << std::endl;
-        MessageBox(
-            "Error",
-            error.what(),
-            loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf", { resource_folder.string() + "/", "", "C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/" }));
+        std::optional<sf::Font> loading_object = loadFromFileWithFallbacks<sf::Font>("PublicSans-Regular.ttf", { resource_folder.string() + "/", "", "C:/Users/Administrator/Desktop/Supple-Crystal 0.1.0.2-alfa/" });
+        if (loading_object.has_value())
+            MessageBox("Error", error.what(), loading_object.value());
+        else
+            std::cerr << "Couldn't load error message box font." << std::endl;
         return 1;
     }
 }

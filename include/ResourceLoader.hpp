@@ -25,7 +25,11 @@ public:
             std::pair<std::string_view, std::string_view> { "font", "PublicSans-Regular.ttf" }
         };
         std::string_view resource_path = resources_paths.at(resource_name);
-        this->resources[resource_name] = loadFromFileWithFallbacks<LoadableType>(std::string(resource_path.begin(), resource_path.end()), this->search_directories);
+        std::optional<LoadableType> loading_object = loadFromFileWithFallbacks<LoadableType>(std::string(resource_path.begin(), resource_path.end()), this->search_directories);
+        if (loading_object.has_value())
+            this->resources[resource_name] = loading_object.value();
+        else
+            throw;
     }
     template <class T>
     const T& get(std::string resource_name) const
