@@ -1,11 +1,11 @@
 <h1 align="center">Supple Crystal</h1>
 
 <p align="center">
-  <img alt="badge-lastcommit" src="https://img.shields.io/github/last-commit/GaryNLOL/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-openissues" src="https://img.shields.io/github/issues-raw/GaryNLOL/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-license" src="https://img.shields.io/github/license/GaryNLOL/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-contributors" src="https://img.shields.io/github/contributors/GaryNLOL/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryNLOL/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-lastcommit" src="https://img.shields.io/github/last-commit/GaryStriving/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-openissues" src="https://img.shields.io/github/issues-raw/GaryStriving/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-license" src="https://img.shields.io/github/license/GaryStriving/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-contributors" src="https://img.shields.io/github/contributors/GaryStriving/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryStriving/Supple-Crystal?style=for-the-badge">
 </p>
 
 <p align="center">
@@ -13,9 +13,9 @@
 </p>
 
 ## Useful links
-- [Contributing Guidelines](https://github.com/GaryNLOL/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
+- [Contributing Guidelines](https://github.com/GaryStriving/Supple-Crystal/blob/main/docs/CONTRIBUTING.md).
 - [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
-- [Discord Server.](https://discord.gg/RQN6gcDQwX)
+- [Discord Server](https://discord.gg/RQN6gcDQwX).
 
 ## What is Supple Crystal?
 Supple Crystal is a **transformable lightweight/advanced image viewer**.
@@ -112,16 +112,16 @@ Once you have it, you can start using it:
 <p align="center"><img alt="open-with" src="https://user-images.githubusercontent.com/46727048/135758901-fa32d5d5-700e-420b-a62f-5c360cb8e53a.gif"></p>
 
 ## License
-All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/LICENSE).
+All the code owned in this repository is under the [MIT license](https://github.com/GaryStriving/Supple-Crystal/blob/main/LICENSE).
 
 Third party code and resources in this repository are under their own licenses:
-- [PublicSans](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/PublicSans) by Pablo Impallari and Rodrigo Fuenzalida (Modified by Dan O. Williams and USWDS) is under the [SIL Open Font License](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
-- [Icons by Cole Bemis](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Cole%20Bemis) by Cole Bemis is under the [Attribution 4.0 International (CC BY 4.0) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Cole%Bemis/LICENSE).
-- [Icons by Kmg Design](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Kmg%20Design) by Kmg Design is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Kmg%Design/LICENSE).
-- [Icons by Steve Schoger](https://github.com/GaryNLOL/Supple-Crystal/tree/main/third-party/Icons%20by%20Steve%20Schoger) by Steve Schoger is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryNLOL/Supple-Crystal/blob/main/third-party/Icons%20by%20Steve%Schoger/LICENSE).
+- [PublicSans](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/PublicSans) by Pablo Impallari and Rodrigo Fuenzalida (Modified by Dan O. Williams and USWDS) is under the [SIL Open Font License](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
+- [Icons by Cole Bemis](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Cole%20Bemis) by Cole Bemis is under the [Attribution 4.0 International (CC BY 4.0) license](https:/GaryStriving/github.com//Supple-Crystal/blob/main/third-party/Icons%20by%20Cole%Bemis/LICENSE).
+- [Icons by Kmg Design](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Kmg%20Design) by Kmg Design is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/Icons%20by%20Kmg%Design/LICENSE).
+- [Icons by Steve Schoger](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Steve%20Schoger) by Steve Schoger is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/Icons%20by%20Steve%Schoger/LICENSE).
 
 
 ## Contributors
 Thanks to these wonderful people for making Supple Crystal possible!
 
-<p align="center"><a href="https://github.com/GaryNLOL/Supple-Crystal/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryNLOL/Supple-Crystal" /></a></p>
+<p align="center"><a href="https://github.com/GaryStriving/Supple-Crystal/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryStriving/Supple-Crystal" /></a></p>
