@@ -15,7 +15,6 @@
 ## Useful links
 - [Contributing Guidelines](https://github.com/GaryStriving/Supple-Crystal/blob/main/docs/CONTRIBUTING.md).
 - [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
-- [Discord Server](https://discord.gg/RQN6gcDQwX).
 
 ## What is Supple Crystal?
 Supple Crystal is a **transformable lightweight/advanced image viewer**.
@@ -33,13 +32,13 @@ It's transformable because it can change between 2 modes: Fast mode and polished
 - **Multiple formats:** Because it is built with SFML, Supple Crystal supports the same image formats that the library supports: `bmp`, `png`, `tga`, `jpg` (non-progressive), `gif` (unanimated), `psd`, `hdr` and `pic`.
 
 ### Platforms
-- Cross-platform.
+- Cross-platform
 
 ### Dependencies
 #### Development
-- SFML.
-- GoogleTest.
-- CMake.
+- SFML
+- GoogleTest
+- CMake
 
 ## Motivation
 Too often, I have trouble opening images. When I'm in a hurry, I want to open an image as fast as possible to check. Nonetheless, when I'm not in a hurry but inspecting an image, I would prefer having many features that helps me viewing the details. As a consequence, I have 2 image viewers. However, this is also a problem, because it's hard managing both - sometimes I open the advanced one when I'm in a hurry and my computer lags - and it causes a lot of desorganization.
@@ -111,6 +110,13 @@ Once you have it, you can start using it:
 
 <p align="center"><img alt="open-with" src="https://user-images.githubusercontent.com/46727048/135758901-fa32d5d5-700e-420b-a62f-5c360cb8e53a.gif"></p>
 
+
+
+## Contributors
+Thanks to these wonderful people for making Supple Crystal possible!
+
+<p align="center"><a href="https://github.com/GaryStriving/Supple-Crystal/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryStriving/Supple-Crystal" /></a></p>
+
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://github.com/GaryHilares/Supple-Crystal/blob/main/LICENSE).
 
@@ -119,9 +125,3 @@ Third party code and resources in this repository are under their own licenses:
 - [Icons by Cole Bemis](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Cole%20Bemis) by Cole Bemis is under the [Attribution 4.0 International (CC BY 4.0) license](https:/GaryStriving/github.com//Supple-Crystal/blob/main/third-party/Icons%20by%20Cole%Bemis/LICENSE).
 - [Icons by Kmg Design](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Kmg%20Design) by Kmg Design is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/Icons%20by%20Kmg%Design/LICENSE).
 - [Icons by Steve Schoger](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/Icons%20by%20Steve%20Schoger) by Steve Schoger is under the [Creative Commons (Attribution 3.0 Unported) license](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/Icons%20by%20Steve%Schoger/LICENSE).
-
-
-## Contributors
-Thanks to these wonderful people for making Supple Crystal possible!
-
-<p align="center"><a href="https://github.com/GaryStriving/Supple-Crystal/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryStriving/Supple-Crystal" /></a></p>
