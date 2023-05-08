@@ -112,7 +112,7 @@ Once you have it, you can start using it:
 <p align="center"><img alt="open-with" src="https://user-images.githubusercontent.com/46727048/135758901-fa32d5d5-700e-420b-a62f-5c360cb8e53a.gif"></p>
 
 ## License
-This work is licensed under a Creative Commons Attribution 4.0 International License.
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://github.com/GaryHilares/Supple-Crystal/blob/main/LICENSE).
 
 Third party code and resources in this repository are under their own licenses:
 - [PublicSans](https://github.com/GaryStriving/Supple-Crystal/tree/main/third-party/PublicSans) by Pablo Impallari and Rodrigo Fuenzalida (Modified by Dan O. Williams and USWDS) is under the [SIL Open Font License](https://github.com/GaryStriving/Supple-Crystal/blob/main/third-party/PublicSans/LICENSE).
