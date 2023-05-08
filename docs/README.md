@@ -68,7 +68,7 @@ To build and install Supple Crystal from source you must follow the next steps:
    5. Use CMake to generate makefiles from `CMakelists.txt`.
    6. Use the generated makefiles to build Supple Crystal
 
-After doing this process, Supple Crystal should appear inside a folder in `build/`.
+After doing this, Supple Crystal should appear inside a folder in `build/`.
 
 For the release version, it should appear like this:
 ```
@@ -109,8 +109,6 @@ Once you have it, you can start using it:
 - In Windows, you can also use the option of "Open with", go to "Choose another app" an search for the Supple Crystal executable. Optionally, you can select "Always use this app" to open your files with Supple Crystal by default:
 
 <p align="center"><img alt="open-with" src="https://user-images.githubusercontent.com/46727048/135758901-fa32d5d5-700e-420b-a62f-5c360cb8e53a.gif"></p>
-
-
 
 ## Contributors
 Thanks to these wonderful people for making Supple Crystal possible!
