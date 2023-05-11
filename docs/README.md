@@ -13,8 +13,8 @@
 </p>
 
 ## Useful links
-- [Contributing Guidelines](https://github.com/GaryStriving/Supple-Crystal/blob/main/docs/CONTRIBUTING.md).
-- [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
+- [Contributing Guidelines](https://github.com/GaryStriving/Supple-Crystal/blob/main/docs/CONTRIBUTING.md)
+- [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/)
 
 ## What is Supple Crystal?
 Supple Crystal is an efficient and versatile **lightweight/advanced image viewer**.
