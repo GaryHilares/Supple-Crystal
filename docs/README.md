@@ -1,11 +1,11 @@
 <h1 align="center">Supple Crystal</h1>
 
 <p align="center">
-  <img alt="badge-lastcommit" src="https://img.shields.io/github/last-commit/GaryStriving/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-openissues" src="https://img.shields.io/github/issues-raw/GaryStriving/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-license" src="https://img.shields.io/github/license/GaryStriving/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-contributors" src="https://img.shields.io/github/contributors/GaryStriving/Supple-Crystal?style=for-the-badge">
-  <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryStriving/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-lastcommit" src="https://img.shields.io/github/last-commit/GaryHilares/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-openissues" src="https://img.shields.io/github/issues-raw/GaryHilares/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-license" src="https://img.shields.io/github/license/GaryHilares/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-contributors" src="https://img.shields.io/github/contributors/GaryHilares/Supple-Crystal?style=for-the-badge">
+  <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryHilares/Supple-Crystal?style=for-the-badge">
 </p>
 
 <p align="center">
